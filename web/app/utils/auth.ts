@@ -1,6 +1,6 @@
 import { PASSWORD, USERNAME } from '@/app/utils/constants';
 import { fetchAuthToken, getThoughtSpotHost } from './utils';
-import { init, AuthType } from '@thoughtspot/visual-embed-sdk';
+import { init, AuthType, LogLevel } from '@thoughtspot/visual-embed-sdk';
 
 const getAuthStrategy = () => {
     return {
@@ -18,6 +18,7 @@ export const authenticate = async (): Promise<void> => {
             ...getAuthStrategy(),
             autoLogin: true,
             disableTokenVerification: true,
+            logLevel: LogLevel.DEBUG,
         });
     } catch (error) {
         console.error('Authentication failed:', error);

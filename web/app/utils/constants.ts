@@ -28,6 +28,9 @@ const embedConfig = {
             },
         },
         fullHeight: true,
+        onALL: (err: unknown) => {
+            console.log(err);
+        }
     },
     liveboardConfig: {
         liveboardId: LIVEBOARD_ID,
