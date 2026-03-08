@@ -6,15 +6,59 @@
   box-sizing: border-box;
 }
 
-body {
-  max-width: 1800px;
-  margin: 0 auto;
-}
-
 :root {
-  --ts-header-height: 56px;
-  --ts-footer-height: 24px;
+  --ts-header-height: 60px;
+  --ts-footer-height: 48px;
   --ts-content-height: calc(
     100vh - var(--ts-header-height) - var(--ts-footer-height)
   );
+
+  --ts-blue: #2770ef;
+  --ts-blue-dark: #1a5bd4;
+  --ts-blue-light: #4d8ef5;
+  --ts-navy: #1d232f;
+  --ts-navy-light: #2a3344;
+  --ts-white: #ffffff;
+  --ts-gray-50: #f8f9fb;
+  --ts-gray-100: #eef1f5;
+  --ts-gray-200: #d8dde6;
+  --ts-gray-400: #8e97a6;
+  --ts-gray-600: #525c6b;
+  --ts-gray-800: #313843;
+  --ts-orange: #f5a623;
+  --ts-green: #2ecc71;
+
+  --ts-shadow-sm: 0 1px 3px rgba(29, 35, 47, 0.08);
+  --ts-shadow-md: 0 4px 12px rgba(29, 35, 47, 0.1);
+  --ts-shadow-lg: 0 8px 30px rgba(29, 35, 47, 0.12);
+
+  --ts-radius-sm: 6px;
+  --ts-radius-md: 10px;
+  --ts-radius-lg: 16px;
+  --ts-radius-xl: 24px;
+
+  --ts-transition: 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 1800px;
+  margin: 0 auto;
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--ts-navy);
+  background: var(--ts-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

@@ -39,4 +39,22 @@ const embedConfig = {
     },
 };
 
-export { USERNAME, PASSWORD, HOST, VALIDITY_TIME_IN_SEC, LIVEBOARD_ID, WORKSHEET_ID, VIZ_ID, embedConfig };
+const GITHUB_URL = "https://github.com/thoughtspot/visual-embed-sdk";
+const REPO_OWNER_URL = "https://github.com/shivam-kumar-ts";
+const DOCS_URL = "https://developers.thoughtspot.com/docs/";
+const GET_STARTED_URL = "https://developers.thoughtspot.com/docs/getting-started";
+
+export {
+    USERNAME,
+    PASSWORD,
+    HOST,
+    VALIDITY_TIME_IN_SEC,
+    LIVEBOARD_ID,
+    WORKSHEET_ID,
+    VIZ_ID,
+    embedConfig,
+    GITHUB_URL,
+    REPO_OWNER_URL,
+    DOCS_URL,
+    GET_STARTED_URL,
+};

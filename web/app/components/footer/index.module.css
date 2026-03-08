@@ -1,3 +1,45 @@
-.container {
+.footer {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--ts-footer-height);
+  padding: 0 28px;
+  background: var(--ts-gray-50);
+  border-top: 1px solid var(--ts-gray-100);
+  font-size: 12px;
+  color: var(--ts-gray-400);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ts-gray-200);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.link {
+  color: var(--ts-gray-400);
+  text-decoration: none;
+  transition: color var(--ts-transition);
+  font-weight: 500;
+}
+
+.link:hover {
+  color: var(--ts-blue);
+}
+
+.heart {
+  color: var(--ts-blue);
 }

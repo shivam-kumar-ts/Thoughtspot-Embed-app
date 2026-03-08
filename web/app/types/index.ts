@@ -1,9 +1,11 @@
+import { USERNAME } from "@/app/utils/constants";
+
 interface UserType {
     name: string;
 }
 
 const _DUMMY_USER: UserType = {
-    name: "Shivam6862",
+    name: USERNAME,
 };
 
 interface AuthTokenResponse {

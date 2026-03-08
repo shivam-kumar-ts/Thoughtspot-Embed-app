@@ -1,3 +1,155 @@
-.container {
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--ts-header-height);
+  padding: 0 28px;
+  background: var(--ts-navy);
+  box-shadow: var(--ts-shadow-md);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ts-white);
+}
+
+.logoMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--ts-blue);
+  border-radius: var(--ts-radius-sm);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--ts-white);
+  letter-spacing: -0.5px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brandName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ts-white);
+  letter-spacing: -0.3px;
+}
+
+.brandTag {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ts-gray-400);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ts-gray-200);
+  border-radius: var(--ts-radius-sm);
+  transition: all var(--ts-transition);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.navLink:hover {
+  color: var(--ts-white);
+  background: var(--ts-navy-light);
+}
+
+.navLinkActive {
+  color: var(--ts-white);
+  background: rgba(39, 112, 239, 0.15);
+  border-color: rgba(39, 112, 239, 0.3);
+}
+
+.navIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.navLink:hover .navIcon,
+.navLinkActive .navIcon {
+  opacity: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ts-green);
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
+}
+
+.userBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 8px;
+  background: var(--ts-navy-light);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ts-gray-200);
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ts-blue), var(--ts-blue-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ts-white);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .nav {
+    gap: 2px;
+  }
+
+  .navLink {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .brandText {
+    display: none;
+  }
 }
