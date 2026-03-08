@@ -72,6 +72,7 @@
   transition: all var(--ts-transition);
   text-decoration: none;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .navLink:hover {
