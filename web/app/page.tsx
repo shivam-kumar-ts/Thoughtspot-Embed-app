@@ -1,9 +1,10 @@
 import classes from "./styles/page.module.css";
+import Intro from "@/app/components/intro";
 
 export default function Home() {
   return (
     <div className={classes.container}>
-      <p>shivam6862</p>
+      <Intro />
     </div>
   );
 }

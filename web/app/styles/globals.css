@@ -10,3 +10,11 @@ body {
   max-width: 1800px;
   margin: 0 auto;
 }
+
+:root {
+  --ts-header-height: 56px;
+  --ts-footer-height: 24px;
+  --ts-content-height: calc(
+    100vh - var(--ts-header-height) - var(--ts-footer-height)
+  );
+}

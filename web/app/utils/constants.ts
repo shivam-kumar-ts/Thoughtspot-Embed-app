@@ -13,7 +13,7 @@ const WORKSHEET_ID = process.env.NEXT_PUBLIC_TS_WORKSHEET_ID || '';
 const embedConfig = {
     globalConfig: {
         frameParams: {
-            height: "100vh",
+            height: "var(--ts-content-height)",
             width: "100vw",
         },
     },
