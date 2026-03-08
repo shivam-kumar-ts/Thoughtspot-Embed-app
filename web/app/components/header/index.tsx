@@ -1,10 +1,9 @@
 "use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useContext } from "react";
-import AppContext from "@/app/contexts/AppContext";
 import classes from "./index.module.css";
+import { usePathname } from "next/navigation";
+import AppContext from "@/app/contexts/AppContext";
 
 const navItems = [
   { href: "/liveboard", label: "Liveboard" },

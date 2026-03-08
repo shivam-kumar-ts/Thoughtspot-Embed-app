@@ -20,7 +20,6 @@ export const authenticate = async (): Promise<void> => {
             disableTokenVerification: true,
         });
     } catch (error) {
-        // eslint-disable-next-line no-console
         console.error('Authentication failed:', error);
         throw new Error('Failed to initialize authentication');
     }
