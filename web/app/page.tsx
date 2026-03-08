@@ -1,6 +1,8 @@
+import classes from "./styles/page.module.css";
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className={classes.container}>
       <p>shivam6862</p>
     </div>
   );
