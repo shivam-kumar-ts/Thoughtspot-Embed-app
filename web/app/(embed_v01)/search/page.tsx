@@ -6,5 +6,7 @@ import { SearchEmbed } from "@thoughtspot/visual-embed-sdk/react";
 authenticate();
 
 export default function Search() {
-  return <SearchEmbed {...embedConfig.globalConfig} {...embedConfig.searchConfig} />;
+  return (
+    <SearchEmbed {...embedConfig.globalConfig} {...embedConfig.searchConfig} />
+  );
 }

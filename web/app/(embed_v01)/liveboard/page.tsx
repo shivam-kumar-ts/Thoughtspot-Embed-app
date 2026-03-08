@@ -6,5 +6,10 @@ import { LiveboardEmbed } from "@thoughtspot/visual-embed-sdk/react";
 authenticate();
 
 export default function Liveboard() {
-  return <LiveboardEmbed {...embedConfig.globalConfig} {...embedConfig.liveboardConfig} />;
+  return (
+    <LiveboardEmbed
+      {...embedConfig.globalConfig}
+      {...embedConfig.liveboardConfig}
+    />
+  );
 }

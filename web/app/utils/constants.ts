@@ -1,3 +1,5 @@
+import { HomePage, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
+
 const USERNAME = process.env.NEXT_PUBLIC_TS_USERNAME || '';
 const PASSWORD = process.env.NEXT_PUBLIC_TS_PASSWORD || '';
 const HOST = process.env.NEXT_PUBLIC_TS_HOST || '';
@@ -13,7 +15,7 @@ const embedConfig = {
         frameParams: {
             height: "100vh",
             width: "100vw",
-        }
+        },
     },
     liveboardConfig: {
         liveboardId: LIVEBOARD_ID,
@@ -22,10 +24,16 @@ const embedConfig = {
         liveboardId: LIVEBOARD_ID,
         vizId: VIZ_ID,
     },
-    worksheetConfig: {
+    spotterConfig: {
         worksheetId: WORKSHEET_ID,
     },
     fullAppConfig: {
+        showPrimaryNavbar: true,
+        modularHomeExperience: true,
+        discoveryExperience: {
+            primaryNavbarVersion: PrimaryNavbarVersion.Sliding,
+            homePage: HomePage.ModularWithStylingChanges,
+        },
     },
     searchConfig: {
     },
