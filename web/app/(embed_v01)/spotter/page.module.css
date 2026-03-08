@@ -1,4 +1,4 @@
 .container {
-  height: var(--ts-content-height);
+  min-height: var(--ts-content-height);
   width: 100%;
 }

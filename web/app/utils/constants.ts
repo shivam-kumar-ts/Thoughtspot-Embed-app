@@ -16,6 +16,18 @@ const embedConfig = {
             height: "var(--ts-content-height)",
             width: "100vw",
         },
+        customizations: {
+            style: {
+                customCSS: {
+                    rules_UNSTABLE: {
+                        ".embed-module__footerWrapper": {
+                            display: "none !important",
+                        },
+                    },
+                },
+            },
+        },
+        fullHeight: true,
     },
     liveboardConfig: {
         liveboardId: LIVEBOARD_ID,
