@@ -1,6 +1,6 @@
 import classes from "./index.module.css";
 
-const Loading = () => {
+const LoadingComponent = () => {
   return (
     <div className={classes.container}>
       <div className={classes.spinner}>
@@ -12,4 +12,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingComponent;
