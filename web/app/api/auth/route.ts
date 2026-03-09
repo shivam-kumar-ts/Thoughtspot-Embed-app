@@ -32,7 +32,7 @@ export async function POST() {
         const data = await response.json();
         if (!data?.token) {
             return NextResponse.json(
-                { error: ERROR_MESSAGES.NO_TOKEN },
+                { error: ERROR_MESSAGES.AUTH_TOKEN_MISSING },
                 { status: 500 },
             );
         }

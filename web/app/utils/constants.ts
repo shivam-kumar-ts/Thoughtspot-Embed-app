@@ -145,9 +145,18 @@ const API = {
 
 const ERROR_MESSAGES = {
     AUTH_TOKEN_FETCH: "Failed to fetch auth token",
-    NO_TOKEN: "No token received in response",
+    AUTH_TOKEN_MISSING: "No token received in response",
+    AUTH_RESPONSE_PARSE_FAILED: "Unable to parse authentication response",
     AUTH_INIT_FAILED: "Failed to initialize authentication",
+    AUTH_UNEXPECTED: "An unexpected authentication error occurred",
     INTERNAL_SERVER_ERROR: "Internal server error",
+};
+
+const NOTIFICATION_MESSAGES = {
+    auth: {
+        failed: "Authentication Failed",
+        message: "Could not connect to ThoughtSpot. Please try again later.",
+    }
 };
 
 export {
@@ -164,4 +173,5 @@ export {
     METADATA,
     API,
     ERROR_MESSAGES,
+    NOTIFICATION_MESSAGES,
 };
