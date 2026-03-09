@@ -1,8 +1,5 @@
 const USERNAME = process.env.NEXT_PUBLIC_TS_USERNAME || '';
-const PASSWORD = process.env.NEXT_PUBLIC_TS_PASSWORD || '';
 const HOST = process.env.NEXT_PUBLIC_TS_HOST || '';
-
-const VALIDITY_TIME_IN_SEC = 3600;
 
 const LIVEBOARD_ID = process.env.NEXT_PUBLIC_TS_LIVEBOARD_ID || '';
 const VIZ_ID = process.env.NEXT_PUBLIC_TS_VIZ_ID || '';
@@ -33,9 +30,7 @@ const LINKS = {
 
 export {
     USERNAME,
-    PASSWORD,
     HOST,
-    VALIDITY_TIME_IN_SEC,
     LIVEBOARD_ID,
     WORKSHEET_ID,
     VIZ_ID,
