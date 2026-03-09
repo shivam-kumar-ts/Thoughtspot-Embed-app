@@ -1,6 +1,6 @@
 import Link from "next/link";
 import classes from "./index.module.css";
-import { DOCS_URL, GET_STARTED_URL } from "@/app/utils/constants";
+import { LINKS } from "@/app/utils/constants";
 
 const features = [
   {
@@ -62,12 +62,12 @@ const Intro = () => {
             Try Liveboard <span className={classes.arrow}>&rarr;</span>
           </Link>
           <a
-            href={DOCS_URL}
+            href={LINKS.READ_TUTORIAL.url}
             target="_blank"
             rel="noopener noreferrer"
             className={classes.btnSecondary}
           >
-            Read the Docs
+            {LINKS.READ_TUTORIAL.label}
           </a>
         </div>
       </section>
@@ -102,12 +102,12 @@ const Intro = () => {
             </span>
           </div>
           <a
-            href={GET_STARTED_URL}
+            href={LINKS.GET_STARTED.url}
             target="_blank"
             rel="noopener noreferrer"
             className={classes.bannerBtn}
           >
-            Get Started &rarr;
+            {LINKS.GET_STARTED.label} &rarr;
           </a>
         </div>
       </div>

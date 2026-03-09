@@ -1,5 +1,5 @@
 import classes from "./index.module.css";
-import { DOCS_URL, GITHUB_URL, REPO_OWNER_URL } from "@/app/utils/constants";
+import { LINKS } from "@/app/utils/constants";
 
 const Footer = () => {
   return (
@@ -13,29 +13,29 @@ const Footer = () => {
       <div className={classes.links}>
         <a
           className={classes.link}
-          href={DOCS_URL}
+          href={LINKS.DOCS.url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Docs
+          {LINKS.DOCS.label}
         </a>
         <span className={classes.dot} />
         <a
           className={classes.link}
-          href={GITHUB_URL}
+          href={LINKS.GITHUB.url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          GitHub
+          {LINKS.GITHUB.label}
         </a>
         <span className={classes.dot} />
         <a
           className={classes.link}
-          href={REPO_OWNER_URL}
+          href={LINKS.REPO_OWNER.url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Made by shivam6862
+          {LINKS.REPO_OWNER.label}
         </a>
       </div>
     </footer>

@@ -54,10 +54,28 @@ const embedConfig = {
     },
 };
 
-const GITHUB_URL = "https://github.com/thoughtspot/visual-embed-sdk";
-const REPO_OWNER_URL = "https://github.com/shivam-kumar-ts";
-const DOCS_URL = "https://developers.thoughtspot.com/docs/";
-const GET_STARTED_URL = "https://developers.thoughtspot.com/docs/getting-started";
+const LINKS = {
+    DOCS: {
+        url: "https://developers.thoughtspot.com/docs/",
+        label: "Docs",
+    },
+    GITHUB: {
+        url: "https://github.com/thoughtspot/visual-embed-sdk",
+        label: "GitHub",
+    },
+    REPO_OWNER: {
+        url: "https://github.com/shivam-kumar-ts",
+        label: "Made by shivam6862",
+    },
+    GET_STARTED: {
+        url: "https://developers.thoughtspot.com/docs/getting-started",
+        label: "Get Started",
+    },
+    READ_TUTORIAL: {
+        url: "https://developers.thoughtspot.com/docs/tutorials/tse-fundamentals/intro",
+        label: "Read the Guide",
+    },
+};
 
 export {
     USERNAME,
@@ -68,8 +86,5 @@ export {
     WORKSHEET_ID,
     VIZ_ID,
     embedConfig,
-    GITHUB_URL,
-    REPO_OWNER_URL,
-    DOCS_URL,
-    GET_STARTED_URL,
+    LINKS,
 };
