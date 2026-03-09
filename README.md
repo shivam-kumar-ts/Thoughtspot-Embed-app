@@ -54,7 +54,7 @@ Edit `.env` with your values:
 
 ```
 NEXT_PUBLIC_TS_USERNAME='your-thoughtspot-username'
-NEXT_PUBLIC_TS_PASSWORD='your-thoughtspot-password'
+TS_PASSWORD='your-thoughtspot-password'
 NEXT_PUBLIC_TS_HOST='https://your-instance.thoughtspot.cloud'
 NEXT_PUBLIC_TS_LIVEBOARD_ID='your-liveboard-guid'
 NEXT_PUBLIC_TS_VIZ_ID='your-visualization-guid'
@@ -64,7 +64,7 @@ NEXT_PUBLIC_TS_WORKSHEET_ID='your-worksheet-guid'
 | Variable | Description |
 |----------|-------------|
 | `NEXT_PUBLIC_TS_USERNAME` | ThoughtSpot username for authentication |
-| `NEXT_PUBLIC_TS_PASSWORD` | ThoughtSpot password for authentication |
+| `TS_PASSWORD` | ThoughtSpot password (server-only, never exposed to the browser) |
 | `NEXT_PUBLIC_TS_HOST` | Full URL of your ThoughtSpot instance |
 | `NEXT_PUBLIC_TS_LIVEBOARD_ID` | GUID of the Liveboard to embed |
 | `NEXT_PUBLIC_TS_VIZ_ID` | GUID of the specific visualization to embed |
@@ -98,17 +98,22 @@ web/
 │   │   └── AppContext.tsx      # React context for user state
 │   ├── styles/                 # Global styles and page-level CSS modules
 │   ├── types/                  # TypeScript type definitions
+│   ├── api/
+│   │   └── auth/
+│   │       └── route.ts        # Server-side auth token proxy
 │   ├── utils/
 │   │   ├── auth.ts             # ThoughtSpot SDK initialization & auth
 │   │   ├── constants.ts        # Environment vars, embed configs, URLs
-│   │   └── utils.ts            # Auth token fetching via REST API
-│   ├── layout.tsx              # Root layout (header + footer)
+│   │   ├── embedConfig.ts      # Embed component configuration
+│   │   └── utils.ts            # Helper utilities
+│   ├── layout.tsx              # Root layout (header + footer + metadata)
 │   ├── page.tsx                # Home / landing page
 │   ├── error.tsx               # Global error boundary
 │   ├── not-found.tsx           # Custom 404 page
 │   └── loading.tsx             # Root loading state
+├── middleware.ts                # API rate limiting & origin validation
 ├── .env.example                # Environment variable template
-├── next.config.ts              # Next.js configuration
+├── next.config.ts              # Next.js config (security headers)
 ├── package.json
 └── tsconfig.json
 ```
@@ -126,13 +131,19 @@ Run these from the `web/` directory:
 
 ## Authentication
 
-The app uses **ThoughtSpot Trusted Authentication (Cookieless)** to securely initialize the Embed SDK. On each embed page load:
+The app uses **ThoughtSpot Trusted Authentication (Cookieless)** to securely initialize the Embed SDK. The auth flow is:
 
-1. A full auth token is requested from the ThoughtSpot REST API (`/api/rest/2.0/auth/token/full`)
-2. The SDK is initialized with `AuthType.TrustedAuthTokenCookieless` and the fetched token
-3. Embed components render within authenticated iframes
+1. The embed layout (`(embed_v01)/layout.tsx`) calls `authenticate()` once for all embed pages
+2. The client requests a token from the Next.js API route (`/api/auth`)
+3. The API route fetches a full auth token from ThoughtSpot server-side — credentials never reach the browser
+4. The SDK is initialized with `AuthType.TrustedAuthTokenCookieless` and the returned token
+5. Embed components render within authenticated iframes
 
-See `web/app/utils/auth.ts` and `web/app/utils/utils.ts` for the implementation.
+## Security
+
+- **Server-only credentials** — `TS_PASSWORD` is never exposed to the client bundle
+- **Security headers** — HSTS, X-Content-Type-Options, Referrer-Policy, and Permissions-Policy via `next.config.ts`
+- **API middleware** — Origin validation and rate limiting (30 req/min per IP) on all `/api/*` routes
 
 ## Resources
 

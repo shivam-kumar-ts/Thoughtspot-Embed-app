@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 const TS_HOST = process.env.NEXT_PUBLIC_TS_HOST || '';
 const TS_USERNAME = process.env.NEXT_PUBLIC_TS_USERNAME || '';
-const TS_PASSWORD = process.env.NEXT_PUBLIC_TS_PASSWORD || '';
+const TS_PASSWORD = process.env.TS_PASSWORD || '';
 const VALIDITY_TIME_IN_SEC = 3600;
 
 export async function POST() {
