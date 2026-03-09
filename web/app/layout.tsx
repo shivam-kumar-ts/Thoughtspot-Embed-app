@@ -16,8 +16,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ThoughtSpot Embed App",
-  description: "ThoughtSpot Embed Application",
+  title: {
+    default: "ThoughtSpot Embed App",
+    template: "%s | ThoughtSpot Embed",
+  },
+  description:
+    "Demo application showcasing ThoughtSpot Embed SDK — interactive liveboards, AI-powered search, and full app analytics embedded into your application.",
+  keywords: [
+    "ThoughtSpot",
+    "Embed SDK",
+    "Analytics",
+    "Liveboard",
+    "Visualization",
+    "Search",
+    "Spotter",
+  ],
+  openGraph: {
+    title: "ThoughtSpot Embed App",
+    description:
+      "Explore how ThoughtSpot Embed SDK lets you integrate powerful analytics into any application.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({
