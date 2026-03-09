@@ -1,4 +1,4 @@
-import { HomePage, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
+import { HomePage, ListPage, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
 import { LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID } from "@/app/utils/constants";
 
 const embedConfig = {
@@ -23,25 +23,54 @@ const embedConfig = {
             console.log(err);
         }
     },
+
     liveboardConfig: {
         liveboardId: LIVEBOARD_ID,
+        isLiveboardCompactHeaderEnabled: true,
+        isLiveboardMasterpiecesEnabled: true,
+        isCentralizedLiveboardFilterUXEnabled: true,
+        isEnhancedFilterInteractivityEnabled: true,
+        isThisPeriodInDateFiltersEnabled: true,
+        updatedSpotterChatPrompt: true,
     },
+
     vizConfig: {
         liveboardId: LIVEBOARD_ID,
         vizId: VIZ_ID,
+        isThisPeriodInDateFiltersEnabled: true,
     },
+
     spotterConfig: {
         worksheetId: WORKSHEET_ID,
+        updatedSpotterChatPrompt: true,
+        spotterSidebarConfig: {
+            enablePastConversationsSidebar: true,
+        },
     },
+
     fullAppConfig: {
         showPrimaryNavbar: true,
         modularHomeExperience: true,
         discoveryExperience: {
             primaryNavbarVersion: PrimaryNavbarVersion.Sliding,
             homePage: HomePage.ModularWithStylingChanges,
+            listPageVersion: ListPage.ListWithUXChanges,
+        },
+        isUnifiedSearchExperienceEnabled: true,
+        isLiveboardCompactHeaderEnabled: true,
+        isLiveboardMasterpiecesEnabled: true,
+        isCentralizedLiveboardFilterUXEnabled: true,
+        isEnhancedFilterInteractivityEnabled: true,
+        isThisPeriodInDateFiltersEnabled: true,
+        updatedSpotterChatPrompt: true,
+        spotterSidebarConfig: {
+            enablePastConversationsSidebar: true,
         },
     },
+
     searchConfig: {
+        focusSearchBarOnRender: true,
+        isThisPeriodInDateFiltersEnabled: true,
     },
 };
 
