@@ -1,23 +1,21 @@
 import { NextResponse } from 'next/server';
+import { HOST, USERNAME, API, ERROR_MESSAGES } from '@/app/utils/constants';
 
-const TS_HOST = process.env.NEXT_PUBLIC_TS_HOST || '';
-const TS_USERNAME = process.env.NEXT_PUBLIC_TS_USERNAME || '';
 const TS_PASSWORD = process.env.TS_PASSWORD || '';
-const VALIDITY_TIME_IN_SEC = 3600;
 
 export async function POST() {
     try {
         const response = await fetch(
-            `${TS_HOST}/api/rest/2.0/auth/token/full`,
+            `${HOST}${API.TS_AUTH_PATH}`,
             {
                 method: 'POST',
                 headers: {
-                    accept: 'application/json',
-                    'content-type': 'application/json',
+                    accept: API.CONTENT_TYPE,
+                    'content-type': API.CONTENT_TYPE,
                 },
                 body: JSON.stringify({
-                    username: TS_USERNAME,
-                    validity_time_in_sec: VALIDITY_TIME_IN_SEC,
+                    username: USERNAME,
+                    validity_time_in_sec: API.VALIDITY_TIME_IN_SEC,
                     auto_create: false,
                     password: TS_PASSWORD,
                 }),
@@ -26,7 +24,7 @@ export async function POST() {
 
         if (!response.ok) {
             return NextResponse.json(
-                { error: `Failed to fetch auth token: ${response.statusText}` },
+                { error: `${ERROR_MESSAGES.AUTH_TOKEN_FETCH}: ${response.statusText}` },
                 { status: response.status },
             );
         }
@@ -34,7 +32,7 @@ export async function POST() {
         const data = await response.json();
         if (!data?.token) {
             return NextResponse.json(
-                { error: 'No token received in response' },
+                { error: ERROR_MESSAGES.NO_TOKEN },
                 { status: 500 },
             );
         }
@@ -43,7 +41,7 @@ export async function POST() {
     } catch (error) {
         console.error('Auth token fetch error:', error);
         return NextResponse.json(
-            { error: 'Internal server error' },
+            { error: ERROR_MESSAGES.INTERNAL_SERVER_ERROR },
             { status: 500 },
         );
     }

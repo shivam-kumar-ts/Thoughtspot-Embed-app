@@ -1,13 +1,13 @@
 import classes from "./index.module.css";
-import { LINKS } from "@/app/utils/constants";
+import { LINKS, PAGE_TEXT } from "@/app/utils/constants";
 
 const Footer = () => {
   return (
     <footer className={classes.footer}>
       <div className={classes.left}>
-        <span>Built with</span>
+        <span>{PAGE_TEXT.FOOTER.BUILT_WITH}</span>
         <span className={classes.heart}>&#9829;</span>
-        <span>using ThoughtSpot Embed SDK</span>
+        <span>{PAGE_TEXT.FOOTER.USING_SDK}</span>
       </div>
 
       <div className={classes.links}>

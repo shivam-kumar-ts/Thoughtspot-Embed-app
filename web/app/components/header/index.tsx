@@ -4,14 +4,7 @@ import { useContext } from "react";
 import classes from "./index.module.css";
 import { usePathname } from "next/navigation";
 import AppContext from "@/app/contexts/AppContext";
-
-const navItems = [
-  { href: "/liveboard", label: "Liveboard" },
-  { href: "/viz", label: "Visualization" },
-  { href: "/search", label: "Search" },
-  { href: "/spotter", label: "Spotter" },
-  { href: "/full_app", label: "Full App" },
-];
+import { NAV_ITEMS, BRAND } from "@/app/utils/constants";
 
 const Header = () => {
   const pathname = usePathname();
@@ -26,15 +19,15 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <Link href="/" className={classes.brand}>
-        <span className={classes.logoMark}>TS</span>
+        <span className={classes.logoMark}>{BRAND.LOGO_MARK}</span>
         <span className={classes.brandText}>
-          <span className={classes.brandName}>ThoughtSpot</span>
-          <span className={classes.brandTag}>Embed Demo</span>
+          <span className={classes.brandName}>{BRAND.NAME}</span>
+          <span className={classes.brandTag}>{BRAND.TAG}</span>
         </span>
       </Link>
 
       <nav className={classes.nav}>
-        {navItems.map((item) => (
+        {NAV_ITEMS.map((item) => (
           <Link
             key={item.href}
             href={item.href}

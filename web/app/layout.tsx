@@ -4,6 +4,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AppContextProvider } from "@/app/contexts/AppContext";
+import { BRAND, METADATA as META } from "@/app/utils/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,24 +18,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ThoughtSpot Embed App",
-    template: "%s | ThoughtSpot Embed",
+    default: BRAND.FULL_NAME,
+    template: BRAND.TEMPLATE,
   },
-  description:
-    "Demo application showcasing ThoughtSpot Embed SDK — interactive liveboards, AI-powered search, and full app analytics embedded into your application.",
-  keywords: [
-    "ThoughtSpot",
-    "Embed SDK",
-    "Analytics",
-    "Liveboard",
-    "Visualization",
-    "Search",
-    "Spotter",
-  ],
+  description: META.DESCRIPTION,
+  keywords: META.KEYWORDS,
   openGraph: {
-    title: "ThoughtSpot Embed App",
-    description:
-      "Explore how ThoughtSpot Embed SDK lets you integrate powerful analytics into any application.",
+    title: BRAND.FULL_NAME,
+    description: META.OG_DESCRIPTION,
     type: "website",
     locale: "en_US",
   },

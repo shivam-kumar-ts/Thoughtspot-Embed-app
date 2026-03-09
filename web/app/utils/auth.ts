@@ -1,22 +1,22 @@
-import { USERNAME } from '@/app/utils/constants';
+import { USERNAME, API, ERROR_MESSAGES } from '@/app/utils/constants';
 import { getThoughtSpotHost } from './utils';
 import { init, AuthType, LogLevel } from '@thoughtspot/visual-embed-sdk';
 
 const fetchAuthToken = async (): Promise<string> => {
-    const response = await fetch('/api/auth', {
+    const response = await fetch(API.AUTH_ENDPOINT, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json',
+            'content-type': API.CONTENT_TYPE,
         },
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch auth token: ${response.statusText}`);
+        throw new Error(`${ERROR_MESSAGES.AUTH_TOKEN_FETCH}: ${response.statusText}`);
     }
 
     const data = await response.json();
     if (!data?.token) {
-        throw new Error('No token received in response');
+        throw new Error(ERROR_MESSAGES.NO_TOKEN);
     }
 
     return data.token;
@@ -41,6 +41,6 @@ export const authenticate = async (): Promise<void> => {
         });
     } catch (error) {
         console.error('Authentication failed:', error);
-        throw new Error('Failed to initialize authentication');
+        throw new Error(ERROR_MESSAGES.AUTH_INIT_FAILED);
     }
 };

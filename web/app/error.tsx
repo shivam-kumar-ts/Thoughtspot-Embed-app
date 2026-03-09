@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import classes from "./styles/page.module.css";
+import { PAGE_TEXT } from "@/app/utils/constants";
 
 export default function Error({
   error,
@@ -18,11 +19,8 @@ export default function Error({
         </div>
       </div>
 
-      <h1 className={classes.errorTitle}>Something went wrong</h1>
-      <p className={classes.errorDesc}>
-        An unexpected error occurred while loading this page. You can try again
-        or head back to the home page.
-      </p>
+      <h1 className={classes.errorTitle}>{PAGE_TEXT.ERROR.TITLE}</h1>
+      <p className={classes.errorDesc}>{PAGE_TEXT.ERROR.DESCRIPTION}</p>
 
       {error.message && (
         <span className={classes.errorDetail}>{error.message}</span>
@@ -30,10 +28,10 @@ export default function Error({
 
       <div className={classes.errorActions}>
         <button onClick={reset} className={classes.errorBtnRetry}>
-          &#8635; Try Again
+          &#8635; {PAGE_TEXT.ERROR.RETRY}
         </button>
         <Link href="/" className={classes.errorBtnHome}>
-          Back to Home
+          {PAGE_TEXT.ERROR.BACK_HOME}
         </Link>
       </div>
     </div>

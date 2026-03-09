@@ -28,6 +28,128 @@ const LINKS = {
     },
 };
 
+const NAV_ITEMS = [
+    { href: "/liveboard", label: "Liveboard" },
+    { href: "/viz", label: "Visualization" },
+    { href: "/search", label: "Search" },
+    { href: "/spotter", label: "Spotter" },
+    { href: "/full_app", label: "Full App" },
+];
+
+const BRAND = {
+    LOGO_MARK: "TS",
+    NAME: "ThoughtSpot",
+    TAG: "Embed Demo",
+    FULL_NAME: "ThoughtSpot Embed App",
+    TEMPLATE: "%s | ThoughtSpot Embed",
+    SDK_NAME: "ThoughtSpot Embed SDK",
+    VISUAL_SDK_NAME: "ThoughtSpot Visual Embed SDK",
+};
+
+const FEATURES = [
+    {
+        href: "/liveboard",
+        icon: "📊",
+        iconClass: "cardIconLiveboard",
+        title: "Liveboard Embed",
+        desc: "Embed interactive liveboards with real-time data visualizations directly into your application.",
+    },
+    {
+        href: "/viz",
+        icon: "📈",
+        iconClass: "cardIconViz",
+        title: "Visualization Embed",
+        desc: "Embed individual chart visualizations for focused, contextual data insights.",
+    },
+    {
+        href: "/search",
+        icon: "🔍",
+        iconClass: "cardIconSearch",
+        title: "Search Embed",
+        desc: "Give users the power to ask questions of their data using natural language search.",
+    },
+    {
+        href: "/spotter",
+        icon: "🤖",
+        iconClass: "cardIconSpotter",
+        title: "Spotter (AI)",
+        desc: "AI-powered analytics assistant that helps users discover insights conversationally.",
+    },
+    {
+        href: "/full_app",
+        icon: "🚀",
+        iconClass: "cardIconFullApp",
+        title: "Full App Embed",
+        desc: "Embed the complete ThoughtSpot experience with full navigation and discovery.",
+    },
+];
+
+const PAGE_TEXT = {
+    HERO: {
+        BADGE: "Live Demo Environment",
+        TITLE: "Analytics That Live",
+        TITLE_HIGHLIGHT: "Inside Your App",
+        SUBTITLE:
+            "Explore how ThoughtSpot Embed SDK lets you integrate powerful analytics, AI-driven search, and interactive dashboards seamlessly into any application.",
+        CTA_PRIMARY: "Try Liveboard",
+        CTA_EXPLORE: "Explore",
+    },
+    BANNER: {
+        TITLE: "Ready to embed analytics?",
+        SUBTITLE: "Get started with the ThoughtSpot Visual Embed SDK in minutes.",
+    },
+    NOT_FOUND: {
+        CODE: "404",
+        TITLE: "Page not found",
+        DESCRIPTION:
+            "The page you\u2019re looking for doesn\u2019t exist or has been moved. Try one of the links below to get back on track.",
+        BACK_HOME: "Back to Home",
+        TRY_LIVEBOARD: "Try Liveboard",
+    },
+    ERROR: {
+        TITLE: "Something went wrong",
+        DESCRIPTION:
+            "An unexpected error occurred while loading this page. You can try again or head back to the home page.",
+        RETRY: "Try Again",
+        BACK_HOME: "Back to Home",
+    },
+    LOADING: "Loading analytics...",
+    FOOTER: {
+        BUILT_WITH: "Built with",
+        USING_SDK: "using ThoughtSpot Embed SDK",
+    },
+};
+
+const METADATA = {
+    DESCRIPTION:
+        "Demo application showcasing ThoughtSpot Embed SDK — interactive liveboards, AI-powered search, and full app analytics embedded into your application.",
+    KEYWORDS: [
+        "ThoughtSpot",
+        "Embed SDK",
+        "Analytics",
+        "Liveboard",
+        "Visualization",
+        "Search",
+        "Spotter",
+    ],
+    OG_DESCRIPTION:
+        "Explore how ThoughtSpot Embed SDK lets you integrate powerful analytics into any application.",
+};
+
+const API = {
+    AUTH_ENDPOINT: "/api/auth",
+    TS_AUTH_PATH: "/api/rest/2.0/auth/token/full",
+    VALIDITY_TIME_IN_SEC: 3600,
+    CONTENT_TYPE: "application/json",
+};
+
+const ERROR_MESSAGES = {
+    AUTH_TOKEN_FETCH: "Failed to fetch auth token",
+    NO_TOKEN: "No token received in response",
+    AUTH_INIT_FAILED: "Failed to initialize authentication",
+    INTERNAL_SERVER_ERROR: "Internal server error",
+};
+
 export {
     USERNAME,
     HOST,
@@ -35,4 +157,11 @@ export {
     WORKSHEET_ID,
     VIZ_ID,
     LINKS,
+    NAV_ITEMS,
+    BRAND,
+    FEATURES,
+    PAGE_TEXT,
+    METADATA,
+    API,
+    ERROR_MESSAGES,
 };

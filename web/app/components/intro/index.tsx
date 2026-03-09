@@ -1,44 +1,6 @@
 import Link from "next/link";
 import classes from "./index.module.css";
-import { LINKS } from "@/app/utils/constants";
-
-const features = [
-  {
-    href: "/liveboard",
-    icon: "📊",
-    iconClass: "cardIconLiveboard",
-    title: "Liveboard Embed",
-    desc: "Embed interactive liveboards with real-time data visualizations directly into your application.",
-  },
-  {
-    href: "/viz",
-    icon: "📈",
-    iconClass: "cardIconViz",
-    title: "Visualization Embed",
-    desc: "Embed individual chart visualizations for focused, contextual data insights.",
-  },
-  {
-    href: "/search",
-    icon: "🔍",
-    iconClass: "cardIconSearch",
-    title: "Search Embed",
-    desc: "Give users the power to ask questions of their data using natural language search.",
-  },
-  {
-    href: "/spotter",
-    icon: "🤖",
-    iconClass: "cardIconSpotter",
-    title: "Spotter (AI)",
-    desc: "AI-powered analytics assistant that helps users discover insights conversationally.",
-  },
-  {
-    href: "/full_app",
-    icon: "🚀",
-    iconClass: "cardIconFullApp",
-    title: "Full App Embed",
-    desc: "Embed the complete ThoughtSpot experience with full navigation and discovery.",
-  },
-];
+import { LINKS, FEATURES, PAGE_TEXT } from "@/app/utils/constants";
 
 const Intro = () => {
   return (
@@ -46,20 +8,19 @@ const Intro = () => {
       <section className={classes.hero}>
         <span className={classes.badge}>
           <span className={classes.badgeDot} />
-          Live Demo Environment
+          {PAGE_TEXT.HERO.BADGE}
         </span>
         <h1 className={classes.title}>
-          Analytics That Live{" "}
-          <span className={classes.titleHighlight}>Inside Your App</span>
+          {PAGE_TEXT.HERO.TITLE}{" "}
+          <span className={classes.titleHighlight}>
+            {PAGE_TEXT.HERO.TITLE_HIGHLIGHT}
+          </span>
         </h1>
-        <p className={classes.subtitle}>
-          Explore how ThoughtSpot Embed SDK lets you integrate powerful
-          analytics, AI-driven search, and interactive dashboards seamlessly
-          into any application.
-        </p>
+        <p className={classes.subtitle}>{PAGE_TEXT.HERO.SUBTITLE}</p>
         <div className={classes.heroActions}>
           <Link href="/liveboard" className={classes.btnPrimary}>
-            Try Liveboard <span className={classes.arrow}>&rarr;</span>
+            {PAGE_TEXT.HERO.CTA_PRIMARY}{" "}
+            <span className={classes.arrow}>&rarr;</span>
           </Link>
           <a
             href={LINKS.READ_TUTORIAL.url}
@@ -73,7 +34,7 @@ const Intro = () => {
       </section>
 
       <section className={classes.features}>
-        {features.map((f) => (
+        {FEATURES.map((f) => (
           <Link key={f.href} href={f.href} className={classes.card}>
             <span
               className={`${classes.cardIcon} ${
@@ -85,7 +46,7 @@ const Intro = () => {
             <h3 className={classes.cardTitle}>{f.title}</h3>
             <p className={classes.cardDesc}>{f.desc}</p>
             <span className={classes.cardFooter}>
-              Explore <span>&rarr;</span>
+              {PAGE_TEXT.HERO.CTA_EXPLORE} <span>&rarr;</span>
             </span>
           </Link>
         ))}
@@ -95,10 +56,10 @@ const Intro = () => {
         <div className={classes.bannerInner}>
           <div className={classes.bannerText}>
             <span className={classes.bannerTitle}>
-              Ready to embed analytics?
+              {PAGE_TEXT.BANNER.TITLE}
             </span>
             <span className={classes.bannerSub}>
-              Get started with the ThoughtSpot Visual Embed SDK in minutes.
+              {PAGE_TEXT.BANNER.SUBTITLE}
             </span>
           </div>
           <a
