@@ -111,9 +111,9 @@ web/
 │   ├── error.tsx               # Global error boundary
 │   ├── not-found.tsx           # Custom 404 page
 │   └── loading.tsx             # Root loading state
-├── middleware.ts                # API rate limiting & origin validation
+├── middleware.ts               # API origin validation
 ├── .env.example                # Environment variable template
-├── next.config.ts              # Next.js config (security headers)
+├── next.config.ts              # Next.js config
 ├── package.json
 └── tsconfig.json
 ```
@@ -142,8 +142,7 @@ The app uses **ThoughtSpot Trusted Authentication (Cookieless)** to securely ini
 ## Security
 
 - **Server-only credentials** — `TS_PASSWORD` is never exposed to the client bundle
-- **Security headers** — HSTS, X-Content-Type-Options, Referrer-Policy, and Permissions-Policy via `next.config.ts`
-- **API middleware** — Origin validation and rate limiting (30 req/min per IP) on all `/api/*` routes
+- **API middleware** — Origin validation on all `/api/*` routes
 
 ## Resources
 
