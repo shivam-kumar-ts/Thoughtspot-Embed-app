@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Thoughtspot Embed App",
-  description: "Thoughtspot Embed Application",
+  title: "ThoughtSpot Embed App",
+  description: "ThoughtSpot Embed Application",
 };
 
 export default function RootLayout({
