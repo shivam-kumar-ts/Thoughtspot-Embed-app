@@ -1,5 +1,5 @@
-import { HomePage, ListPage, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
 import { LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID } from "@/app/utils/constants";
+import { HomePage, ListPage, Page, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
 
 const embedConfig = {
     globalConfig: {
@@ -32,6 +32,8 @@ const embedConfig = {
         isEnhancedFilterInteractivityEnabled: true,
         isThisPeriodInDateFiltersEnabled: true,
         updatedSpotterChatPrompt: true,
+        hideIrrelevantChipsInLiveboardTabs: true,
+        coverAndFilterOptionInPDF: true,
     },
 
     vizConfig: {
@@ -66,6 +68,9 @@ const embedConfig = {
         spotterSidebarConfig: {
             enablePastConversationsSidebar: true,
         },
+        hideIrrelevantChipsInLiveboardTabs: true,
+        coverAndFilterOptionInPDF: true,
+        pageId: Page.Home,
     },
 
     searchConfig: {
