@@ -4,8 +4,8 @@ const getThoughtSpotHost = () => {
     return HOST;
 };
 
-const generateNotificationId = () => {
+const generateRandomId = () => {
     return Math.random().toString(36).substring(2, 15);
 };
 
-export { getThoughtSpotHost, generateNotificationId };
+export { getThoughtSpotHost, generateRandomId };

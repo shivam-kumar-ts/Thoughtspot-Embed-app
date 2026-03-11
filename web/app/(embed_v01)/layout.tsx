@@ -1,7 +1,7 @@
 "use client";
 import { NOTIFICATION_TYPE } from "../types";
+import { useContext, useEffect } from "react";
 import { authenticate } from "@/app/utils/auth";
-import { useContext, useEffect, useRef } from "react";
 import { NOTIFICATION_MESSAGES } from "../utils/constants";
 import NotificationContext from "@/app/contexts/NotificationContext";
 
@@ -10,12 +10,9 @@ export default function EmbedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const attempted = useRef(false);
   const { notify } = useContext(NotificationContext);
 
   useEffect(() => {
-    if (attempted.current) return;
-    attempted.current = true;
     authenticate((err) => {
       notify(
         NOTIFICATION_TYPE.ERROR,
@@ -23,7 +20,8 @@ export default function EmbedLayout({
         err.message || NOTIFICATION_MESSAGES.auth.message,
       );
     });
-  }, [notify]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <>{children}</>;
 }

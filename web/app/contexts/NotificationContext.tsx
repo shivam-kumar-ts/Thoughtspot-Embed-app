@@ -1,7 +1,7 @@
 "use client";
 import { NotificationType } from "@/app/types";
 import React, { useState, useCallback } from "react";
-import { generateNotificationId } from "../utils/utils";
+import { generateRandomId } from "../utils/utils";
 
 export type Notification = {
   id: string;
@@ -53,7 +53,7 @@ export const NotificationProvider: React.FC<Props> = ({ children }) => {
       message?: string,
       duration?: number,
     ) => {
-      const id = generateNotificationId();
+      const id = generateRandomId();
       const ttl = duration ?? DEFAULT_DURATION[type];
 
       const notification: Notification = {
