@@ -1,6 +1,11 @@
 import { LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID } from "@/app/utils/constants";
 import { HomePage, ListPage, Page, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
 
+const customCSSVariables = {
+    variables: {
+    }
+};
+
 const embedConfig = {
     globalConfig: {
         frameParams: {
@@ -15,6 +20,7 @@ const embedConfig = {
                             display: "none !important",
                         },
                     },
+                    ...customCSSVariables,
                 },
             },
         },
