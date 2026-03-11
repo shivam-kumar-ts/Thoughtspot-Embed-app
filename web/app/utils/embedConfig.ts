@@ -77,6 +77,10 @@ const embedConfig = {
         focusSearchBarOnRender: true,
         isThisPeriodInDateFiltersEnabled: true,
     },
+
+    spotterAgentConfig: {
+        worksheetId: WORKSHEET_ID,
+    },
 };
 
 export default embedConfig;
