@@ -1,94 +1,100 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: var(--ts-z-header);
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: var(--ts-header-height);
-  padding: 0 28px;
-  background: var(--ts-navy);
-  box-shadow: var(--ts-shadow-md);
+  padding: 0 var(--ts-space-18);
+  background: var(--ts-white);
+  border-bottom: 1px solid var(--ts-gray-100);
 }
+
+/* ── Brand ── */
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--ts-space-5);
   text-decoration: none;
-  color: var(--ts-white);
+  color: var(--ts-primary);
 }
 
 .logoMark {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: var(--ts-blue);
+  width: var(--ts-avatar-lg);
+  height: var(--ts-avatar-lg);
+  background: var(--ts-primary);
   border-radius: var(--ts-radius-sm);
-  font-weight: 800;
-  font-size: 16px;
+  font-weight: var(--ts-font-extrabold);
+  font-size: var(--ts-text-lg);
   color: var(--ts-white);
-  letter-spacing: -0.5px;
+  letter-spacing: var(--ts-tracking-tight);
 }
 
 .brandText {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
+  line-height: var(--ts-leading-tight);
 }
 
 .brandName {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ts-white);
-  letter-spacing: -0.3px;
+  font-size: var(--ts-text-lg);
+  font-weight: var(--ts-font-bold);
+  color: var(--ts-black);
+  letter-spacing: var(--ts-tracking-wide);
+  text-transform: uppercase;
 }
 
 .brandTag {
-  font-size: 10px;
-  font-weight: 500;
+  font-size: var(--ts-text-2xs);
+  font-weight: var(--ts-font-medium);
   color: var(--ts-gray-400);
-  letter-spacing: 0.5px;
+  letter-spacing: var(--ts-tracking-wider);
   text-transform: uppercase;
 }
+
+/* ── Navigation ── */
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--ts-space-1);
 }
 
 .navLink {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ts-gray-200);
-  border-radius: var(--ts-radius-sm);
+  gap: var(--ts-space-3);
+  padding: var(--ts-space-4) var(--ts-space-8);
+  font-size: var(--ts-text-sm);
+  font-weight: var(--ts-font-medium);
+  color: var(--ts-gray-600);
+  border-radius: 0;
   transition: all var(--ts-transition);
   text-decoration: none;
-  border: 1px solid transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
+  letter-spacing: var(--ts-tracking-wider);
+  text-transform: uppercase;
 }
 
 .navLink:hover {
-  color: var(--ts-white);
-  background: var(--ts-navy-light);
+  color: var(--ts-primary);
 }
 
 .navLinkActive {
-  color: var(--ts-white);
-  background: rgba(39, 112, 239, 0.15);
-  border-color: rgba(39, 112, 239, 0.3);
+  color: var(--ts-primary);
+  border-bottom-color: var(--ts-primary);
 }
 
 .navIcon {
-  width: 16px;
-  height: 16px;
+  width: var(--ts-icon-sm);
+  height: var(--ts-icon-sm);
   opacity: 0.7;
 }
 
@@ -97,57 +103,64 @@
   opacity: 1;
 }
 
+/* ── Actions ── */
+
 .actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--ts-space-7);
 }
 
 .statusDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--ts-green);
-  box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
+  width: var(--ts-dot-status);
+  height: var(--ts-dot-status);
+  border-radius: var(--ts-radius-full);
+  background: var(--ts-success);
+  box-shadow: 0 0 6px rgba(var(--ts-success-rgb), 0.4);
 }
 
 .userBadge {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 12px 5px 8px;
-  background: var(--ts-navy-light);
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ts-gray-200);
+  gap: var(--ts-space-4);
+  padding: var(--ts-space-3) var(--ts-space-7) var(--ts-space-3) var(--ts-space-4);
+  background: var(--ts-primary);
+  border-radius: var(--ts-radius-sm);
+  font-size: var(--ts-text-sm);
+  font-weight: var(--ts-font-medium);
+  color: var(--ts-white);
+  letter-spacing: var(--ts-tracking-wide);
+  text-transform: uppercase;
 }
 
 .avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--ts-blue), var(--ts-blue-light));
+  width: var(--ts-avatar-sm);
+  height: var(--ts-avatar-sm);
+  border-radius: var(--ts-radius-full);
+  background: rgba(var(--ts-white-rgb), 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: var(--ts-text-xs);
+  font-weight: var(--ts-font-bold);
   color: var(--ts-white);
 }
 
+/* ── Responsive ── */
+
 @media (max-width: 768px) {
   .header {
-    padding: 0 16px;
+    padding: 0 var(--ts-space-8);
   }
 
   .nav {
-    gap: 2px;
+    gap: 0;
   }
 
   .navLink {
-    padding: 6px 10px;
-    font-size: 12px;
+    padding: var(--ts-space-3) var(--ts-space-5);
+    font-size: var(--ts-text-xs);
+    letter-spacing: var(--ts-tracking-wide);
   }
 
   .brandText {

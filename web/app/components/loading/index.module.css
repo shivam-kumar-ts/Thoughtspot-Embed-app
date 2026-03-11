@@ -5,31 +5,31 @@
   justify-content: center;
   width: 100%;
   min-height: var(--ts-content-height);
-  gap: 20px;
+  gap: var(--ts-space-10);
   background: var(--ts-gray-50);
 }
 
 .spinner {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: var(--ts-icon-xl);
+  height: var(--ts-icon-xl);
 }
 
 .ring {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
+  border-radius: var(--ts-radius-full);
   border: 3px solid var(--ts-gray-100);
-  border-top-color: var(--ts-blue);
-  animation: spin 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  border-top-color: var(--ts-primary);
+  animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .ringInner {
   position: absolute;
-  inset: 6px;
-  border-radius: 50%;
+  inset: var(--ts-space-3);
+  border-radius: var(--ts-radius-full);
   border: 3px solid var(--ts-gray-100);
-  border-bottom-color: var(--ts-blue-light);
+  border-bottom-color: var(--ts-primary-light);
   animation: spin 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
 }
 
@@ -40,10 +40,10 @@
 }
 
 .text {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--ts-text-md);
+  font-weight: var(--ts-font-medium);
   color: var(--ts-gray-400);
-  letter-spacing: 0.3px;
+  letter-spacing: var(--ts-tracking-slight);
 }
 
 .dots {

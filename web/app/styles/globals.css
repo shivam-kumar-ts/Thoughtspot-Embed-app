@@ -7,37 +7,153 @@
 }
 
 :root {
+  /* ── Layout ── */
   --ts-header-height: 60px;
   --ts-footer-height: 48px;
   --ts-content-height: calc(
     100vh - var(--ts-header-height) - var(--ts-footer-height)
   );
+  --ts-max-width: 1800px;
+  --ts-content-max-width: 1100px;
 
-  --ts-blue: #2770ef;
-  --ts-blue-dark: #1a5bd4;
-  --ts-blue-light: #4d8ef5;
-  --ts-navy: #1d232f;
-  --ts-navy-light: #2a3344;
+  /* ── Brand Colors ── */
+  --ts-primary: #b5985a;
+  --ts-primary-dark: #9a7d42;
+  --ts-primary-light: #c9ad6e;
+  --ts-primary-rgb: 181, 152, 90;
+
+  /* ── Neutral Colors ── */
+  --ts-black: #2c2c2c;
+  --ts-black-light: #3d3d3d;
+  --ts-black-rgb: 44, 44, 44;
   --ts-white: #ffffff;
-  --ts-gray-50: #f8f9fb;
-  --ts-gray-100: #eef1f5;
-  --ts-gray-200: #d8dde6;
-  --ts-gray-400: #8e97a6;
-  --ts-gray-600: #525c6b;
-  --ts-gray-800: #313843;
-  --ts-orange: #f5a623;
-  --ts-green: #2ecc71;
+  --ts-white-rgb: 255, 255, 255;
 
-  --ts-shadow-sm: 0 1px 3px rgba(29, 35, 47, 0.08);
-  --ts-shadow-md: 0 4px 12px rgba(29, 35, 47, 0.1);
-  --ts-shadow-lg: 0 8px 30px rgba(29, 35, 47, 0.12);
+  /* ── Gray Scale ── */
+  --ts-gray-50: #faf9f7;
+  --ts-gray-100: #f0ede8;
+  --ts-gray-200: #ddd8cf;
+  --ts-gray-400: #9e9689;
+  --ts-gray-600: #6b6560;
+  --ts-gray-800: #3d3836;
 
-  --ts-radius-sm: 6px;
-  --ts-radius-md: 10px;
-  --ts-radius-lg: 16px;
-  --ts-radius-xl: 24px;
+  /* ── Semantic Colors ── */
+  --ts-success: #6b8e5e;
+  --ts-success-rgb: 107, 142, 94;
+  --ts-warning: #c9943a;
+  --ts-warning-rgb: 201, 148, 58;
+  --ts-accent: #8b7355;
+  --ts-accent-rgb: 139, 115, 85;
 
-  --ts-transition: 0.2s ease;
+  --ts-error: #b91c1c;
+  --ts-error-bright: #e74c3c;
+  --ts-error-bright-rgb: 231, 76, 60;
+  --ts-error-dark: #c0392b;
+  --ts-error-ring-rgb: 239, 68, 68;
+  --ts-error-bg: #fef2f2;
+  --ts-error-border: #fecaca;
+  --ts-error-text: #dc2626;
+
+  --ts-success-dark: #27ae60;
+  --ts-success-bright-rgb: 46, 204, 113;
+  --ts-warning-dark: #c87d0a;
+  --ts-warning-bright-rgb: 245, 166, 35;
+
+  /* ── Typography ── */
+  --ts-text-2xs: 10px;
+  --ts-text-xs: 11px;
+  --ts-text-sm: 12px;
+  --ts-text-base: 13px;
+  --ts-text-md: 14px;
+  --ts-text-lg: 15px;
+  --ts-text-xl: 16px;
+  --ts-text-2xl: 20px;
+  --ts-text-3xl: 24px;
+  --ts-text-4xl: 28px;
+  --ts-text-5xl: 42px;
+  --ts-text-display-sm: 80px;
+  --ts-text-display: 120px;
+
+  --ts-font-light: 300;
+  --ts-font-normal: 400;
+  --ts-font-medium: 500;
+  --ts-font-semibold: 600;
+  --ts-font-bold: 700;
+  --ts-font-extrabold: 800;
+
+  --ts-tracking-tight: -0.5px;
+  --ts-tracking-snug: -0.3px;
+  --ts-tracking-normal: 0;
+  --ts-tracking-slight: 0.2px;
+  --ts-tracking-wide: 0.5px;
+  --ts-tracking-wider: 1px;
+  --ts-tracking-widest: 1.5px;
+
+  --ts-leading-none: 1;
+  --ts-leading-tight: 1.1;
+  --ts-leading-snug: 1.2;
+  --ts-leading-normal: 1.4;
+  --ts-leading-relaxed: 1.55;
+  --ts-leading-loose: 1.6;
+  --ts-leading-looser: 1.7;
+
+  /* ── Spacing ── */
+  --ts-space-1: 2px;
+  --ts-space-2: 4px;
+  --ts-space-3: 6px;
+  --ts-space-4: 8px;
+  --ts-space-5: 10px;
+  --ts-space-6: 12px;
+  --ts-space-7: 14px;
+  --ts-space-8: 16px;
+  --ts-space-9: 18px;
+  --ts-space-10: 20px;
+  --ts-space-12: 24px;
+  --ts-space-14: 28px;
+  --ts-space-16: 32px;
+  --ts-space-18: 36px;
+  --ts-space-20: 40px;
+  --ts-space-22: 44px;
+  --ts-space-24: 48px;
+  --ts-space-28: 56px;
+  --ts-space-32: 64px;
+  --ts-space-36: 72px;
+
+  /* ── Borders & Radii ── */
+  --ts-radius-sm: 4px;
+  --ts-radius-md: 6px;
+  --ts-radius-lg: 10px;
+  --ts-radius-xl: 16px;
+  --ts-radius-pill: 20px;
+  --ts-radius-full: 50%;
+
+  /* ── Shadows ── */
+  --ts-shadow-sm: 0 1px 3px rgba(var(--ts-black-rgb), 0.06);
+  --ts-shadow-md: 0 4px 12px rgba(var(--ts-black-rgb), 0.08);
+  --ts-shadow-lg: 0 8px 30px rgba(var(--ts-black-rgb), 0.1);
+
+  /* ── Transitions ── */
+  --ts-transition: 0.25s ease;
+
+  /* ── Z-Index ── */
+  --ts-z-header: 100;
+  --ts-z-toast: 9999;
+
+  /* ── Component Sizes ── */
+  --ts-icon-sm: 16px;
+  --ts-icon-md: 24px;
+  --ts-icon-lg: 32px;
+  --ts-icon-xl: 44px;
+  --ts-icon-2xl: 80px;
+
+  --ts-avatar-sm: 24px;
+  --ts-avatar-md: 28px;
+  --ts-avatar-lg: 34px;
+
+  --ts-btn-height: 36px;
+  --ts-dot-sm: 4px;
+  --ts-dot-md: 6px;
+  --ts-dot-status: 8px;
 }
 
 html {
@@ -45,17 +161,18 @@ html {
 }
 
 body {
-  max-width: 1800px;
+  max-width: var(--ts-max-width);
   margin: 0 auto;
   font-family:
     var(--font-geist-sans),
     system-ui,
     -apple-system,
     sans-serif;
-  color: var(--ts-navy);
+  color: var(--ts-black);
   background: var(--ts-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: var(--ts-tracking-slight);
 }
 
 a {

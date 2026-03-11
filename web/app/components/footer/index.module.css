@@ -3,43 +3,47 @@
   align-items: center;
   justify-content: space-between;
   height: var(--ts-footer-height);
-  padding: 0 28px;
-  background: var(--ts-gray-50);
+  padding: 0 var(--ts-space-18);
+  background: var(--ts-white);
   border-top: 1px solid var(--ts-gray-100);
-  font-size: 12px;
+  font-size: var(--ts-text-sm);
   color: var(--ts-gray-400);
+  letter-spacing: var(--ts-tracking-slight);
 }
 
 .left {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--ts-space-3);
 }
 
 .dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
+  width: var(--ts-dot-sm);
+  height: var(--ts-dot-sm);
+  border-radius: var(--ts-radius-full);
   background: var(--ts-gray-200);
 }
 
 .links {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--ts-space-8);
 }
 
 .link {
   color: var(--ts-gray-400);
   text-decoration: none;
   transition: color var(--ts-transition);
-  font-weight: 500;
+  font-weight: var(--ts-font-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ts-tracking-wide);
+  font-size: var(--ts-text-xs);
 }
 
 .link:hover {
-  color: var(--ts-blue);
+  color: var(--ts-primary);
 }
 
 .heart {
-  color: var(--ts-blue);
+  color: var(--ts-primary);
 }
