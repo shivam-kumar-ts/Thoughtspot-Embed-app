@@ -8,6 +8,7 @@ A demo application showcasing how to embed [ThoughtSpot](https://try-everywhere.
 - **Visualization Embed** — Individual chart embeds for focused, contextual insights
 - **Search Embed** — Natural language search over your data
 - **Spotter (AI) Embed** — AI-powered conversational analytics assistant
+- **Spotter Agent** — Headless chat interface powered by `SpotterAgentEmbed`, with a custom message list, typing indicator, inline visualization rendering, and full conversation state management
 - **Full App Embed** — The complete ThoughtSpot experience with full navigation and discovery
 
 ## Tech Stack
@@ -83,40 +84,77 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```
 web/
 ├── app/
-│   ├── (embed_v01)/            # Embed page route group
-│   │   ├── full_app/           # Full App embed page
-│   │   ├── liveboard/          # Liveboard embed page
-│   │   ├── search/             # Search embed page
-│   │   ├── spotter/            # Spotter (AI) embed page
-│   │   └── viz/                # Visualization embed page
+│   ├── (embed_v01)/                  # Embed page route group
+│   │   ├── layout.tsx                # Shared layout — calls authenticate() once
+│   │   ├── full_app/                 # Full App embed page
+│   │   ├── liveboard/               # Liveboard embed page
+│   │   ├── search/                  # Search embed page
+│   │   ├── spotter/                 # Spotter (AI) embed page
+│   │   ├── spotter_agent/           # Spotter Agent — custom chat UI
+│   │   │   ├── page.tsx             # Main page: wires hook + child components
+│   │   │   ├── page.module.css      # Chat layout, bubbles, typing indicator, responsive
+│   │   │   ├── loading.tsx          # Route-level loading state
+│   │   │   └── components/
+│   │   │       ├── EmptyState.tsx    # Welcome screen with suggestion chips
+│   │   │       ├── InputArea.tsx     # Textarea + send/clear buttons
+│   │   │       ├── MessagesList.tsx  # Scrollable message list with viz containers
+│   │   │       └── Svgs.tsx         # Inline SVG icons used by child components
+│   │   └── viz/                     # Visualization embed page
 │   ├── components/
-│   │   ├── header/             # Navigation header with route links
-│   │   ├── footer/             # Footer with doc/repo links
-│   │   ├── intro/              # Landing page hero & feature cards
-│   │   └── loading/            # Loading spinner component
+│   │   ├── header/                  # Navigation header with route links
+│   │   ├── footer/                  # Footer with doc/repo links
+│   │   ├── intro/                   # Landing page hero & feature cards
+│   │   ├── loading/                 # Loading spinner component
+│   │   └── notification/            # Toast notification component
 │   ├── contexts/
-│   │   └── AppContext.tsx      # React context for user state
-│   ├── styles/                 # Global styles and page-level CSS modules
-│   ├── types/                  # TypeScript type definitions
+│   │   ├── AppContext.tsx           # React context for user state
+│   │   └── NotificationContext.tsx  # Toast notification context & provider
+│   ├── hooks/
+│   │   └── useSpotterAgent.ts       # All Spotter Agent state & SDK logic
+│   ├── styles/                      # Global styles and page-level CSS modules
+│   ├── types/
+│   │   └── index.ts                 # Shared TypeScript types (Message, Role, etc.)
 │   ├── api/
 │   │   └── auth/
-│   │       └── route.ts        # Server-side auth token proxy
+│   │       └── route.ts             # Server-side auth token proxy
 │   ├── utils/
-│   │   ├── auth.ts             # ThoughtSpot SDK initialization & auth
-│   │   ├── constants.ts        # Environment vars, embed configs, URLs
-│   │   ├── embedConfig.ts      # Embed component configuration
-│   │   └── utils.ts            # Helper utilities
-│   ├── layout.tsx              # Root layout (header + footer + metadata)
-│   ├── page.tsx                # Home / landing page
-│   ├── error.tsx               # Global error boundary
-│   ├── not-found.tsx           # Custom 404 page
-│   └── loading.tsx             # Root loading state
-├── middleware.ts               # API origin validation
-├── .env.example                # Environment variable template
-├── next.config.ts              # Next.js config
+│   │   ├── auth.ts                  # ThoughtSpot SDK initialization & auth
+│   │   ├── constants.ts             # Environment vars, embed configs, URLs
+│   │   ├── embedConfig.ts           # Embed component configuration
+│   │   └── utils.ts                 # Helper utilities (ID generation, etc.)
+│   ├── layout.tsx                   # Root layout (header + footer + metadata)
+│   ├── page.tsx                     # Home / landing page
+│   ├── error.tsx                    # Global error boundary
+│   ├── not-found.tsx                # Custom 404 page
+│   └── loading.tsx                  # Root loading state
+├── middleware.ts                    # API origin validation
+├── .env.example                     # Environment variable template
+├── next.config.ts                   # Next.js config
 ├── package.json
 └── tsconfig.json
 ```
+
+### Spotter Agent Architecture
+
+The Spotter Agent page (`/spotter_agent`) is a custom chat interface built on top of the headless `SpotterAgentEmbed` SDK class. Unlike the other embed pages that render a single iframe, Spotter Agent manages its own conversation loop:
+
+```
+page.tsx  ──uses──▸  useSpotterAgent (hook)
+  │                      │
+  │                      ├── SpotterAgentEmbed instance (ref)
+  │                      ├── messages[] state
+  │                      ├── sendMessage() → SDK.sendMessage() → appends viz container
+  │                      └── handleNewConversation() → resets everything
+  │
+  ├── EmptyState        (shown before first message)
+  ├── MessagesList      (renders user bubbles + agent viz containers)
+  └── InputArea         (textarea + send/clear buttons)
+```
+
+Key design decisions:
+- **Hook extraction** — All state, refs, and SDK interaction live in `useSpotterAgent`, keeping the page component purely presentational
+- **Viz container refs** — Agent responses return raw `HTMLDivElement` containers from the SDK; these are stored in a `Map<id, div>` and attached to the DOM via React ref callbacks
+- **Conversation reset** — "New conversation" clears the message array, destroys old viz containers, and creates a fresh `SpotterAgentEmbed` instance
 
 ## Available Scripts
 
