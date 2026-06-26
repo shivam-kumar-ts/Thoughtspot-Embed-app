@@ -1,16 +1,18 @@
-import { USERNAME, API, ERROR_MESSAGES } from '@/app/utils/constants';
-import { getThoughtSpotHost } from './utils';
+import { API, ERROR_MESSAGES } from '@/app/utils/constants';
+import { getEmbedEnv } from './embedEnv';
 import { init, AuthType, LogLevel } from '@thoughtspot/visual-embed-sdk';
 
 export type AuthErrorCallback = (error: Error) => void;
 
 const fetchAuthToken = async (onError?: AuthErrorCallback): Promise<string> => {
     try {
+        const { username, host, password } = getEmbedEnv();
         const response = await fetch(API.AUTH_ENDPOINT, {
             method: 'POST',
             headers: {
                 'content-type': API.CONTENT_TYPE,
             },
+            body: JSON.stringify({ username, host, password }),
         });
 
         if (!response.ok) {
@@ -33,17 +35,19 @@ const fetchAuthToken = async (onError?: AuthErrorCallback): Promise<string> => {
 };
 
 const getAuthStrategy = (onError?: AuthErrorCallback) => {
+    const { username } = getEmbedEnv();
     return {
         authType: AuthType.TrustedAuthTokenCookieless,
         getAuthToken: () => fetchAuthToken(onError),
-        username: USERNAME,
+        username,
     };
 };
 
 export const authenticate = async (onError?: AuthErrorCallback): Promise<void> => {
     try {
+        const { host } = getEmbedEnv();
         await init({
-            thoughtSpotHost: getThoughtSpotHost(),
+            thoughtSpotHost: host,
             ...getAuthStrategy(onError),
             autoLogin: true,
             disableTokenVerification: true,

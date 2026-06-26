@@ -3,10 +3,16 @@ import { HOST, USERNAME, API, ERROR_MESSAGES } from '@/app/utils/constants';
 
 const TS_PASSWORD = process.env.TS_PASSWORD || '';
 
-export async function POST() {
+export async function POST(request: Request) {
     try {
+        const body = await request.json().catch(() => ({}));
+
+        const host = (body?.host || HOST).trim();
+        const username = (body?.username || USERNAME).trim();
+        const password = body?.password || TS_PASSWORD;
+
         const response = await fetch(
-            `${HOST}${API.TS_AUTH_PATH}`,
+            `${host}${API.TS_AUTH_PATH}`,
             {
                 method: 'POST',
                 headers: {
@@ -14,10 +20,10 @@ export async function POST() {
                     'content-type': API.CONTENT_TYPE,
                 },
                 body: JSON.stringify({
-                    username: USERNAME,
+                    username,
                     validity_time_in_sec: API.VALIDITY_TIME_IN_SEC,
                     auto_create: false,
-                    password: TS_PASSWORD,
+                    password,
                 }),
             },
         );

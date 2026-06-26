@@ -106,6 +106,32 @@ const PAGE_TEXT = {
         TITLE: "Ready to embed analytics?",
         SUBTITLE: "Get started with the ThoughtSpot Visual Embed SDK in minutes.",
     },
+    ENV_FORM: {
+        BADGE: "Connection Settings",
+        TITLE: "Configure your ThoughtSpot environment",
+        SUBTITLE:
+            "Provide the credentials used to authenticate and embed. These are stored in your browser and used for all subsequent API calls.",
+        FIELDS: {
+            USERNAME: {
+                label: "Username",
+                placeholder: "e.g. shivam6862",
+            },
+            HOST: {
+                label: "Host",
+                placeholder: "e.g. https://my-instance.thoughtspot.cloud",
+            },
+            PASSWORD: {
+                label: "Password",
+                placeholder: "Your ThoughtSpot password",
+            },
+        },
+        SAVE: "Save & Apply",
+        RESET: "Reset to defaults",
+        SUCCESS_TITLE: "Settings saved",
+        SUCCESS_MESSAGE: "Your ThoughtSpot environment has been updated.",
+        RESET_TITLE: "Settings reset",
+        RESET_MESSAGE: "Reverted to the default environment configuration.",
+    },
     NOT_FOUND: {
         CODE: "404",
         TITLE: "Page not found",
