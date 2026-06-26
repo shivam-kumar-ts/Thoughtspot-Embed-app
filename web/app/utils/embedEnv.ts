@@ -1,9 +1,12 @@
-import { USERNAME, HOST } from '@/app/utils/constants';
+import { USERNAME, HOST, LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID } from '@/app/utils/constants';
 
 export type EmbedEnv = {
     username: string;
     host: string;
     password: string;
+    liveboardId: string;
+    vizId: string;
+    worksheetId: string;
 };
 
 const STORAGE_KEY = 'ts-embed-env';
@@ -12,6 +15,9 @@ const getDefaults = (): EmbedEnv => ({
     username: USERNAME,
     host: HOST,
     password: '',
+    liveboardId: LIVEBOARD_ID,
+    vizId: VIZ_ID,
+    worksheetId: WORKSHEET_ID,
 });
 
 /**
@@ -36,6 +42,9 @@ export const getEmbedEnv = (): EmbedEnv => {
             username: parsed.username?.trim() || defaults.username,
             host: parsed.host?.trim() || defaults.host,
             password: parsed.password ?? defaults.password,
+            liveboardId: parsed.liveboardId?.trim() || defaults.liveboardId,
+            vizId: parsed.vizId?.trim() || defaults.vizId,
+            worksheetId: parsed.worksheetId?.trim() || defaults.worksheetId,
         };
     } catch {
         return defaults;
@@ -52,6 +61,9 @@ export const saveEmbedEnv = (env: EmbedEnv): void => {
             username: env.username.trim(),
             host: env.host.trim(),
             password: env.password,
+            liveboardId: env.liveboardId.trim(),
+            vizId: env.vizId.trim(),
+            worksheetId: env.worksheetId.trim(),
         }),
     );
 };

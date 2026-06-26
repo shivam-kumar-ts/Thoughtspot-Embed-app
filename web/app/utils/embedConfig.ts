@@ -1,4 +1,4 @@
-import { LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID } from "@/app/utils/constants";
+import { getEmbedEnv } from "@/app/utils/embedEnv";
 import { HomePage, ListPage, Page, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
 
 const customCSSVariables = {
@@ -31,7 +31,7 @@ const embedConfig = {
     },
 
     liveboardConfig: {
-        liveboardId: LIVEBOARD_ID,
+        get liveboardId() { return getEmbedEnv().liveboardId; },
         isLiveboardCompactHeaderEnabled: true,
         isLiveboardMasterpiecesEnabled: true,
         isCentralizedLiveboardFilterUXEnabled: true,
@@ -43,13 +43,13 @@ const embedConfig = {
     },
 
     vizConfig: {
-        liveboardId: LIVEBOARD_ID,
-        vizId: VIZ_ID,
+        get liveboardId() { return getEmbedEnv().liveboardId; },
+        get vizId() { return getEmbedEnv().vizId; },
         isThisPeriodInDateFiltersEnabled: true,
     },
 
     spotterConfig: {
-        worksheetId: WORKSHEET_ID,
+        get worksheetId() { return getEmbedEnv().worksheetId; },
         updatedSpotterChatPrompt: true,
         spotterSidebarConfig: {
             enablePastConversationsSidebar: true,
@@ -85,7 +85,7 @@ const embedConfig = {
     },
 
     spotterAgentConfig: {
-        worksheetId: WORKSHEET_ID,
+        get worksheetId() { return getEmbedEnv().worksheetId; },
     },
 };
 

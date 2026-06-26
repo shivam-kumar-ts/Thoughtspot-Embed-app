@@ -14,12 +14,18 @@ const EnvConfig = () => {
   const [username, setUsername] = useState("");
   const [host, setHost] = useState("");
   const [password, setPassword] = useState("");
+  const [liveboardId, setLiveboardId] = useState("");
+  const [vizId, setVizId] = useState("");
+  const [worksheetId, setWorksheetId] = useState("");
 
   const syncFromStore = () => {
     const env = getEmbedEnv();
     setUsername(env.username);
     setHost(env.host);
     setPassword(env.password);
+    setLiveboardId(env.liveboardId);
+    setVizId(env.vizId);
+    setWorksheetId(env.worksheetId);
   };
 
   useEffect(() => {
@@ -44,7 +50,14 @@ const EnvConfig = () => {
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    saveEmbedEnv({ username, host, password });
+    saveEmbedEnv({
+      username,
+      host,
+      password,
+      liveboardId,
+      vizId,
+      worksheetId,
+    });
     notify(NOTIFICATION_TYPE.SUCCESS, TEXT.SUCCESS_TITLE, TEXT.SUCCESS_MESSAGE);
     setOpen(false);
   };
@@ -135,6 +148,45 @@ const EnvConfig = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={TEXT.FIELDS.PASSWORD.placeholder}
                   autoComplete="current-password"
+                />
+              </label>
+
+              <label className={classes.field}>
+                <span className={classes.label}>
+                  {TEXT.FIELDS.LIVEBOARD_ID.label}
+                </span>
+                <input
+                  type="text"
+                  className={classes.input}
+                  value={liveboardId}
+                  onChange={(e) => setLiveboardId(e.target.value)}
+                  placeholder={TEXT.FIELDS.LIVEBOARD_ID.placeholder}
+                />
+              </label>
+
+              <label className={classes.field}>
+                <span className={classes.label}>
+                  {TEXT.FIELDS.VIZ_ID.label}
+                </span>
+                <input
+                  type="text"
+                  className={classes.input}
+                  value={vizId}
+                  onChange={(e) => setVizId(e.target.value)}
+                  placeholder={TEXT.FIELDS.VIZ_ID.placeholder}
+                />
+              </label>
+
+              <label className={classes.field}>
+                <span className={classes.label}>
+                  {TEXT.FIELDS.WORKSHEET_ID.label}
+                </span>
+                <input
+                  type="text"
+                  className={classes.input}
+                  value={worksheetId}
+                  onChange={(e) => setWorksheetId(e.target.value)}
+                  placeholder={TEXT.FIELDS.WORKSHEET_ID.placeholder}
                 />
               </label>
 

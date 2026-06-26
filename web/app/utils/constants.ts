@@ -124,6 +124,18 @@ const PAGE_TEXT = {
                 label: "Password",
                 placeholder: "Your ThoughtSpot password",
             },
+            LIVEBOARD_ID: {
+                label: "Liveboard ID",
+                placeholder: "e.g. c5da71c7-f285-4533-8d30-4f74d301b77b",
+            },
+            VIZ_ID: {
+                label: "Visualization ID",
+                placeholder: "e.g. 4cfba998-93c4-4b6c-a8c6-a23af4bb213e",
+            },
+            WORKSHEET_ID: {
+                label: "Worksheet / Model ID",
+                placeholder: "e.g. cd252e5c-b552-49a8-821d-3eadaa049cca",
+            },
         },
         SAVE: "Save & Apply",
         RESET: "Reset to defaults",
