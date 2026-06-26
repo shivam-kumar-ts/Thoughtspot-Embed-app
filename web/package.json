@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@thoughtspot/rest-api-sdk": "^2.22.0",
-    "@thoughtspot/visual-embed-sdk": "^1.46.4",
+    "@thoughtspot/visual-embed-sdk": "^1.49.3",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
