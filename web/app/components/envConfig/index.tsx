@@ -5,11 +5,13 @@ import { PAGE_TEXT } from "@/app/utils/constants";
 import { NOTIFICATION_TYPE } from "@/app/types";
 import { getEmbedEnv, saveEmbedEnv, clearEmbedEnv } from "@/app/utils/embedEnv";
 import NotificationContext from "@/app/contexts/NotificationContext";
+import AppContext from "@/app/contexts/AppContext";
 
 const TEXT = PAGE_TEXT.ENV_FORM;
 
 const EnvConfig = () => {
   const { notify } = useContext(NotificationContext);
+  const { setUserDataHandler } = useContext(AppContext);
   const [open, setOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [host, setHost] = useState("");
@@ -58,6 +60,7 @@ const EnvConfig = () => {
       vizId,
       worksheetId,
     });
+    setUserDataHandler("name", username);
     notify(NOTIFICATION_TYPE.SUCCESS, TEXT.SUCCESS_TITLE, TEXT.SUCCESS_MESSAGE);
     setOpen(false);
   };
@@ -65,6 +68,7 @@ const EnvConfig = () => {
   const handleReset = () => {
     clearEmbedEnv();
     syncFromStore();
+    setUserDataHandler("name", getEmbedEnv().username);
     notify(NOTIFICATION_TYPE.INFO, TEXT.RESET_TITLE, TEXT.RESET_MESSAGE);
   };
 

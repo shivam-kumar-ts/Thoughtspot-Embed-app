@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserType, _DUMMY_USER } from "@/app/types";
+import { getEmbedEnv } from "@/app/utils/embedEnv";
 
 type AppContextType = {
   userData: UserType;
@@ -18,6 +19,13 @@ type Props = {
 
 export const AppContextProvider: React.FC<Props> = (props) => {
   const [userData, setUserData] = useState(_DUMMY_USER);
+
+  useEffect(() => {
+    // Reflect the saved username (from the env config form / localStorage)
+    // once we are on the client.
+    setUserData((prev) => ({ ...prev, name: getEmbedEnv().username }));
+  }, []);
+
   const setUserDataHandler = (key: keyof UserType, value: string) => {
     setUserData((prevState: UserType) => {
       return {
