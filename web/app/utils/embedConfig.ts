@@ -25,6 +25,10 @@ const embedConfig = {
             },
         },
         fullHeight: true,
+        additionalFlags: {
+            overrideHistoryState: true,
+        },
+        enableLinkOverridesV2: true,
         onALL: (err: unknown) => {
             console.log(err);
         }
