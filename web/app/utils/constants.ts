@@ -137,6 +137,13 @@ const PAGE_TEXT = {
                 placeholder: "e.g. cd252e5c-b552-49a8-821d-3eadaa049cca",
             },
         },
+        FLAGS: {
+            OVERRIDE_HISTORY_STATE: {
+                label: "Override History State",
+                description:
+                    "Let the embed manage browser history so navigation stays in sync with the host app.",
+            },
+        },
         SAVE: "Save & Apply",
         RESET: "Reset to defaults",
         SUCCESS_TITLE: "Settings saved",

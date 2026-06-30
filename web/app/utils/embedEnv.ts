@@ -7,6 +7,7 @@ export type EmbedEnv = {
     liveboardId: string;
     vizId: string;
     worksheetId: string;
+    overrideHistoryState: boolean;
 };
 
 const STORAGE_KEY = 'ts-embed-env';
@@ -18,6 +19,7 @@ const getDefaults = (): EmbedEnv => ({
     liveboardId: LIVEBOARD_ID,
     vizId: VIZ_ID,
     worksheetId: WORKSHEET_ID,
+    overrideHistoryState: true,
 });
 
 /**
@@ -45,6 +47,10 @@ export const getEmbedEnv = (): EmbedEnv => {
             liveboardId: parsed.liveboardId?.trim() || defaults.liveboardId,
             vizId: parsed.vizId?.trim() || defaults.vizId,
             worksheetId: parsed.worksheetId?.trim() || defaults.worksheetId,
+            overrideHistoryState:
+                typeof parsed.overrideHistoryState === 'boolean'
+                    ? parsed.overrideHistoryState
+                    : defaults.overrideHistoryState,
         };
     } catch {
         return defaults;
@@ -64,6 +70,7 @@ export const saveEmbedEnv = (env: EmbedEnv): void => {
             liveboardId: env.liveboardId.trim(),
             vizId: env.vizId.trim(),
             worksheetId: env.worksheetId.trim(),
+            overrideHistoryState: env.overrideHistoryState,
         }),
     );
 };

@@ -19,6 +19,7 @@ const EnvConfig = () => {
   const [liveboardId, setLiveboardId] = useState("");
   const [vizId, setVizId] = useState("");
   const [worksheetId, setWorksheetId] = useState("");
+  const [overrideHistoryState, setOverrideHistoryState] = useState(true);
 
   const syncFromStore = () => {
     const env = getEmbedEnv();
@@ -28,6 +29,7 @@ const EnvConfig = () => {
     setLiveboardId(env.liveboardId);
     setVizId(env.vizId);
     setWorksheetId(env.worksheetId);
+    setOverrideHistoryState(env.overrideHistoryState);
   };
 
   useEffect(() => {
@@ -59,6 +61,7 @@ const EnvConfig = () => {
       liveboardId,
       vizId,
       worksheetId,
+      overrideHistoryState,
     });
     setUserDataHandler("name", username);
     notify(NOTIFICATION_TYPE.SUCCESS, TEXT.SUCCESS_TITLE, TEXT.SUCCESS_MESSAGE);
@@ -193,6 +196,28 @@ const EnvConfig = () => {
                   placeholder={TEXT.FIELDS.WORKSHEET_ID.placeholder}
                 />
               </label>
+
+              <div className={classes.toggleRow}>
+                <span className={classes.toggleText}>
+                  <span className={classes.label}>
+                    {TEXT.FLAGS.OVERRIDE_HISTORY_STATE.label}
+                  </span>
+                  <span className={classes.toggleDesc}>
+                    {TEXT.FLAGS.OVERRIDE_HISTORY_STATE.description}
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={overrideHistoryState}
+                  className={`${classes.toggle} ${
+                    overrideHistoryState ? classes.toggleOn : ""
+                  }`}
+                  onClick={() => setOverrideHistoryState((v) => !v)}
+                >
+                  <span className={classes.toggleKnob} />
+                </button>
+              </div>
 
               <div className={classes.actions}>
                 <button type="submit" className={classes.btnPrimary}>
