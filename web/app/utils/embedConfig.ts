@@ -25,10 +25,8 @@ const embedConfig = {
             },
         },
         fullHeight: true,
-        get additionalFlags() {
-            return {
-                overrideHistoryState: getEmbedEnv().overrideHistoryState,
-            };
+        get overrideHistoryState() {
+            return getEmbedEnv().overrideHistoryState;
         },
         enableLinkOverridesV2: true,
         onALL: (err: unknown) => {
