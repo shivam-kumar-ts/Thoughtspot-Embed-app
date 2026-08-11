@@ -1,4 +1,3 @@
-"use client";
 import styles from "./page.module.css";
 import embedConfig from "../../utils/embedConfig";
 import { AppEmbed } from "@thoughtspot/visual-embed-sdk/react";

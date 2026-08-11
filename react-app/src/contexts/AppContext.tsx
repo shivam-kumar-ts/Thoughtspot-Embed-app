@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import type { UserType } from "../types";
 import { _DUMMY_USER } from "../types";

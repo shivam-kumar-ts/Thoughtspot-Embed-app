@@ -1,4 +1,3 @@
-"use client";
 import { useContext, useEffect, useState } from "react";
 import classes from "./index.module.css";
 import { PAGE_TEXT } from "../../utils/constants";

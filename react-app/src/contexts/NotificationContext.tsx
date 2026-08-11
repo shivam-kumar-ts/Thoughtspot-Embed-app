@@ -1,4 +1,3 @@
-"use client";
 import type { NotificationType } from "../types";
 import React, { useState, useCallback } from "react";
 import { generateRandomId } from "../utils/utils";

@@ -1,4 +1,3 @@
-"use client";
 import classes from "./index.module.css";
 import NotificationContext, {
   type Notification,
