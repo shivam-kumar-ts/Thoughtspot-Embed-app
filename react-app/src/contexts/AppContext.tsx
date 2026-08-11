@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { UserType, _DUMMY_USER } from "../types";
+import type { UserType } from "../types";
+import { _DUMMY_USER } from "../types";
 import { getEmbedEnv } from "../utils/embedEnv";
 
 type AppContextType = {

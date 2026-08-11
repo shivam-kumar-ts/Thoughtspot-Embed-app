@@ -7,12 +7,18 @@ export type AuthErrorCallback = (error: Error) => void;
 const fetchAuthToken = async (onError?: AuthErrorCallback): Promise<string> => {
     try {
         const { username, host, password } = getEmbedEnv();
-        const response = await fetch(API.AUTH_ENDPOINT, {
+        const response = await fetch(`${host}${API.TS_AUTH_PATH}`, {
             method: 'POST',
             headers: {
+                accept: API.CONTENT_TYPE,
                 'content-type': API.CONTENT_TYPE,
             },
-            body: JSON.stringify({ username, host, password }),
+            body: JSON.stringify({
+                username,
+                validity_time_in_sec: API.VALIDITY_TIME_IN_SEC,
+                auto_create: false,
+                password,
+            }),
         });
 
         if (!response.ok) {

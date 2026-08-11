@@ -1,5 +1,5 @@
 "use client";
-import { NotificationType } from "../types";
+import type { NotificationType } from "../types";
 import React, { useState, useCallback } from "react";
 import { generateRandomId } from "../utils/utils";
 

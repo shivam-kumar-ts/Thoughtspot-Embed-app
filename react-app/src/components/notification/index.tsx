@@ -3,7 +3,7 @@ import classes from "./index.module.css";
 import NotificationContext, {
   type Notification,
 } from "../../contexts/NotificationContext";
-import { NotificationType } from "../../types";
+import type { NotificationType } from "../../types";
 import { useContext, useEffect, useRef, useCallback } from "react";
 
 const ICONS: Record<NotificationType, string> = {

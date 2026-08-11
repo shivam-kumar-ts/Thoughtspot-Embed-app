@@ -1,9 +1,9 @@
-const USERNAME = process.env.NEXT_PUBLIC_TS_USERNAME || '';
-const HOST = process.env.NEXT_PUBLIC_TS_HOST || '';
+const USERNAME = import.meta.env.VITE_TS_USERNAME || '';
+const HOST = import.meta.env.VITE_TS_HOST || '';
 
-const LIVEBOARD_ID = process.env.NEXT_PUBLIC_TS_LIVEBOARD_ID || '';
-const VIZ_ID = process.env.NEXT_PUBLIC_TS_VIZ_ID || '';
-const WORKSHEET_ID = process.env.NEXT_PUBLIC_TS_WORKSHEET_ID || '';
+const LIVEBOARD_ID = import.meta.env.VITE_TS_LIVEBOARD_ID || '';
+const VIZ_ID = import.meta.env.VITE_TS_VIZ_ID || '';
+const WORKSHEET_ID = import.meta.env.VITE_TS_WORKSHEET_ID || '';
 
 const LINKS = {
     DOCS: {
@@ -190,7 +190,6 @@ const METADATA = {
 };
 
 const API = {
-    AUTH_ENDPOINT: "/api/auth",
     TS_AUTH_PATH: "/api/rest/2.0/auth/token/full",
     VALIDITY_TIME_IN_SEC: 3600,
     CONTENT_TYPE: "application/json",
