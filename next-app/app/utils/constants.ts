@@ -191,6 +191,8 @@ const METADATA = {
 
 const FULL_APP_PRE_RENDER_ID = "ts-full-app-pre-render";
 const LIVEBOARD_PRE_RENDER_ID = "ts-liveboard-pre-render";
+const FULL_APP_PRE_RENDER_CONTAINER_ID = "ts-fullapp-pre-render-root";
+const LIVEBOARD_PRE_RENDER_CONTAINER_ID = "ts-liveboard-pre-render-root";
 
 const API = {
     AUTH_ENDPOINT: "/api/auth",
@@ -251,4 +253,6 @@ export {
     SPOTTER_AGENT_PAGE,
     FULL_APP_PRE_RENDER_ID,
     LIVEBOARD_PRE_RENDER_ID,
+    FULL_APP_PRE_RENDER_CONTAINER_ID,
+    LIVEBOARD_PRE_RENDER_CONTAINER_ID,
 };
