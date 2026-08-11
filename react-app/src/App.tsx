@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import classes from "./styles/page.module.css";
 import Intro from "./components/intro";
@@ -21,32 +21,22 @@ function Home() {
   );
 }
 
-export default function App() {
+function EmbedLayout() {
   const { isInitialized } = useContext(AppContext);
+  return isInitialized ? <Outlet /> : <LoadingComponent />;
+}
 
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route
-        path="/liveboard"
-        element={isInitialized ? <Liveboard /> : <LoadingComponent />}
-      />
-      <Route
-        path="/viz"
-        element={isInitialized ? <Viz /> : <LoadingComponent />}
-      />
-      <Route
-        path="/search"
-        element={isInitialized ? <Search /> : <LoadingComponent />}
-      />
-      <Route
-        path="/spotter"
-        element={isInitialized ? <Spotter /> : <LoadingComponent />}
-      />
-      <Route
-        path="/full_app"
-        element={isInitialized ? <FullApp /> : <LoadingComponent />}
-      />
+      <Route element={<EmbedLayout />}>
+        <Route path="/liveboard" element={<Liveboard />} />
+        <Route path="/viz" element={<Viz />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/spotter" element={<Spotter />} />
+        <Route path="/full_app" element={<FullApp />} />
+      </Route>
       <Route path="/*" element={<NotFound />} />
     </Routes>
   );
