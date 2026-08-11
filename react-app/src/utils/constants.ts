@@ -34,7 +34,6 @@ const NAV_ITEMS = [
     { href: "/search", label: "Search" },
     { href: "/spotter", label: "Spotter" },
     { href: "/full_app", label: "Full App" },
-    { href: "/spotter_agent", label: "Spotter Agent" },
 ];
 
 const BRAND = {
@@ -82,13 +81,6 @@ const FEATURES = [
         iconClass: "cardIconFullApp",
         title: "Full App Embed",
         desc: "Embed the complete ThoughtSpot experience with full navigation and discovery.",
-    },
-    {
-        href: "/spotter_agent",
-        icon: "🤖",
-        iconClass: "cardIconSpotterAgent",
-        title: "Spotter Agent",
-        desc: "AI-powered analytics assistant that helps users discover insights conversationally.",
     },
 ];
 
@@ -211,24 +203,6 @@ const NOTIFICATION_MESSAGES = {
     }
 };
 
-const SPOTTER_AGENT_PAGE = {
-    emptyState: {
-        title: "Ask me anything about your data",
-        subtitle: "I can help you explore insights, create visualizations, and answer questions using natural language.",
-        suggestions: [
-            "Show me sales by region",
-            "What are the top 10 products?",
-            "Revenue trend over last 12 months",
-            "Compare sales this quarter vs last",
-        ],
-    },
-    inputPlaceholder: "Ask about your data...",
-    errorMessages: {
-        processing: "Sorry, I encountered an error processing your request.",
-        unexpected: "An unexpected error occurred. Please try again.",
-    },
-};
-
 export {
     USERNAME,
     HOST,
@@ -244,5 +218,4 @@ export {
     API,
     ERROR_MESSAGES,
     NOTIFICATION_MESSAGES,
-    SPOTTER_AGENT_PAGE,
 };

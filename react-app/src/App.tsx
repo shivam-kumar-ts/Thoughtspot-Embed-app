@@ -8,6 +8,7 @@ import Viz from "./(embed_v01)/viz/page";
 import Search from "./(embed_v01)/search/page";
 import Spotter from "./(embed_v01)/spotter/page";
 import FullApp from "./(embed_v01)/full_app/page";
+import NotFound from "./not-found";
 
 function Home() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
       <Route path="/search" element={<Search />} />
       <Route path="/spotter" element={<Spotter />} />
       <Route path="/full_app" element={<FullApp />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 }
