@@ -8,6 +8,8 @@ import embedConfig from "../../utils/embedConfig";
 import {
   FULL_APP_PRE_RENDER_ID,
   LIVEBOARD_PRE_RENDER_ID,
+  FULL_APP_PRE_RENDER_CONTAINER_ID,
+  LIVEBOARD_PRE_RENDER_CONTAINER_ID,
 } from "../../utils/constants";
 
 export default function PreRenderInit() {
@@ -19,13 +21,13 @@ export default function PreRenderInit() {
     <>
       <PreRenderedAppEmbed
         preRenderId={FULL_APP_PRE_RENDER_ID}
-        preRenderContainer="#ts-fullapp-pre-render-root"
+        preRenderContainer={`#${FULL_APP_PRE_RENDER_CONTAINER_ID}`}
         {...embedConfig.globalConfig}
         {...embedConfig.fullAppConfig}
       />
       <PreRenderedLiveboardEmbed
         preRenderId={LIVEBOARD_PRE_RENDER_ID}
-        preRenderContainer="#ts-liveboard-pre-render-root"
+        preRenderContainer={`#${LIVEBOARD_PRE_RENDER_CONTAINER_ID}`}
         {...embedConfig.globalConfig}
         {...embedConfig.liveboardConfig}
       />

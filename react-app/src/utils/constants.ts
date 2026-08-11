@@ -183,6 +183,8 @@ const METADATA = {
 
 const FULL_APP_PRE_RENDER_ID = "ts-full-app-pre-render";
 const LIVEBOARD_PRE_RENDER_ID = "ts-liveboard-pre-render";
+const FULL_APP_PRE_RENDER_CONTAINER_ID = "ts-fullapp-pre-render-root";
+const LIVEBOARD_PRE_RENDER_CONTAINER_ID = "ts-liveboard-pre-render-root";
 
 const API = {
     TS_AUTH_PATH: "/api/rest/2.0/auth/token/full",
@@ -223,4 +225,6 @@ export {
     NOTIFICATION_MESSAGES,
     FULL_APP_PRE_RENDER_ID,
     LIVEBOARD_PRE_RENDER_ID,
+    FULL_APP_PRE_RENDER_CONTAINER_ID,
+    LIVEBOARD_PRE_RENDER_CONTAINER_ID,
 };

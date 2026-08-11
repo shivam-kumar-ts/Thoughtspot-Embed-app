@@ -8,7 +8,7 @@ import NotificationContext from "./contexts/NotificationContext";
 import AppContext from "./contexts/AppContext";
 import { authenticate } from "./utils/auth";
 import { NOTIFICATION_TYPE } from "./types/index";
-import { NOTIFICATION_MESSAGES } from "./utils/constants";
+import { NOTIFICATION_MESSAGES, FULL_APP_PRE_RENDER_CONTAINER_ID, LIVEBOARD_PRE_RENDER_CONTAINER_ID } from "./utils/constants";
 
 export default function AppInit() {
   const { notify } = useContext(NotificationContext);
@@ -31,6 +31,8 @@ export default function AppInit() {
     <>
       <NotificationStack />
       <Header />
+      <div id={FULL_APP_PRE_RENDER_CONTAINER_ID} />
+      <div id={LIVEBOARD_PRE_RENDER_CONTAINER_ID} />
       <PreRenderInit />
       <App />
       <Footer />

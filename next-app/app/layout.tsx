@@ -5,7 +5,7 @@ import Header from "./components/header";
 import { Geist, Geist_Mono } from "next/font/google";
 import NotificationStack from "./components/notification";
 import { AppContextProvider } from "@/app/contexts/AppContext";
-import { BRAND, METADATA as META } from "@/app/utils/constants";
+import { BRAND, METADATA as META, FULL_APP_PRE_RENDER_CONTAINER_ID, LIVEBOARD_PRE_RENDER_CONTAINER_ID } from "@/app/utils/constants";
 import { NotificationProvider } from "@/app/contexts/NotificationContext";
 
 const geistSans = Geist({
@@ -47,6 +47,8 @@ export default function RootLayout({
           <AppContextProvider>
             <NotificationStack />
             <Header />
+            <div id={FULL_APP_PRE_RENDER_CONTAINER_ID} />
+            <div id={LIVEBOARD_PRE_RENDER_CONTAINER_ID} />
             {children}
             <Footer />
           </AppContextProvider>
