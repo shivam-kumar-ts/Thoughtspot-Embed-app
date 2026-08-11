@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import classes from "./index.module.css";
 import { LINKS, FEATURES, PAGE_TEXT } from "../../utils/constants";
 
@@ -18,7 +18,7 @@ const Intro = () => {
         </h1>
         <p className={classes.subtitle}>{PAGE_TEXT.HERO.SUBTITLE}</p>
         <div className={classes.heroActions}>
-          <Link href="/liveboard" className={classes.btnPrimary}>
+          <Link to="/liveboard" className={classes.btnPrimary}>
             {PAGE_TEXT.HERO.CTA_PRIMARY}{" "}
             <span className={classes.arrow}>&rarr;</span>
           </Link>
@@ -35,7 +35,7 @@ const Intro = () => {
 
       <section className={classes.features}>
         {FEATURES.map((f) => (
-          <Link key={f.href} href={f.href} className={classes.card}>
+          <Link key={f.href} to={f.href} className={classes.card}>
             <span
               className={`${classes.cardIcon} ${
                 classes[f.iconClass as keyof typeof classes]
