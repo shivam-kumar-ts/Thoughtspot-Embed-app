@@ -1,11 +1,17 @@
 import styles from "./page.module.css";
 import embedConfig from "../../utils/embedConfig";
 import { AppEmbed } from "@thoughtspot/visual-embed-sdk/react";
+import { FULL_APP_PRE_RENDER_ID } from "../../utils/constants";
 
 export default function FullApp() {
   return (
     <div className={styles.container}>
-      <AppEmbed {...embedConfig.globalConfig} {...embedConfig.fullAppConfig} />
+      <AppEmbed
+        preRenderId={FULL_APP_PRE_RENDER_ID}
+        preRenderContainer="#ts-fullapp-pre-render-root"
+        {...embedConfig.globalConfig}
+        {...embedConfig.fullAppConfig}
+      />
     </div>
   );
 }

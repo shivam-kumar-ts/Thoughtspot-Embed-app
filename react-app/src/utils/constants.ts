@@ -181,6 +181,9 @@ const METADATA = {
         "Explore how ThoughtSpot Embed SDK lets you integrate powerful analytics into any application.",
 };
 
+const FULL_APP_PRE_RENDER_ID = "ts-full-app-pre-render";
+const LIVEBOARD_PRE_RENDER_ID = "ts-liveboard-pre-render";
+
 const API = {
     TS_AUTH_PATH: "/api/rest/2.0/auth/token/full",
     VALIDITY_TIME_IN_SEC: 3600,
@@ -218,4 +221,6 @@ export {
     API,
     ERROR_MESSAGES,
     NOTIFICATION_MESSAGES,
+    FULL_APP_PRE_RENDER_ID,
+    LIVEBOARD_PRE_RENDER_ID,
 };

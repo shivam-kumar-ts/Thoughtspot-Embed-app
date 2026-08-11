@@ -5,6 +5,7 @@ import { authenticate } from "@/app/utils/auth";
 import { NOTIFICATION_MESSAGES } from "../utils/constants";
 import NotificationContext from "@/app/contexts/NotificationContext";
 import LoadingComponent from "@/app/components/loading";
+import PreRenderInit from "@/app/components/preRenderInit";
 
 export default function EmbedLayout({
   children,
@@ -27,5 +28,12 @@ export default function EmbedLayout({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isInitialized ? <>{children}</> : <LoadingComponent />;
+  return isInitialized ? (
+    <>
+      <PreRenderInit />
+      {children}
+    </>
+  ) : (
+    <LoadingComponent />
+  );
 }

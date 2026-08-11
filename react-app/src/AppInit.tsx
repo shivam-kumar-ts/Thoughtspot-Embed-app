@@ -3,6 +3,7 @@ import App from "./App";
 import Footer from "./components/footer/index";
 import Header from "./components/header/index";
 import NotificationStack from "./components/notification/index";
+import PreRenderInit from "./components/preRenderInit/index";
 import NotificationContext from "./contexts/NotificationContext";
 import AppContext from "./contexts/AppContext";
 import { authenticate } from "./utils/auth";
@@ -30,6 +31,7 @@ export default function AppInit() {
     <>
       <NotificationStack />
       <Header />
+      <PreRenderInit />
       <App />
       <Footer />
     </>
