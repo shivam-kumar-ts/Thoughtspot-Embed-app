@@ -64,7 +64,7 @@ export const NotificationProvider: React.FC<Props> = ({ children }) => {
       };
       setNotifications((prev) => [...prev, notification]);
     },
-    [dismiss],
+    [],
   );
 
   return (
