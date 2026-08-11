@@ -1,0 +1,276 @@
+.container {
+  position: fixed;
+  top: calc(var(--ts-header-height) + var(--ts-space-8));
+  right: var(--ts-space-12);
+  z-index: var(--ts-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ts-space-6);
+  max-width: 400px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ts-space-7);
+  padding: var(--ts-space-8) var(--ts-space-9);
+  padding-right: var(--ts-space-22);
+  border-radius: var(--ts-radius-md);
+  border: 1px solid var(--ts-gray-100);
+  background: var(--ts-white);
+  box-shadow:
+    0 6px 20px rgba(var(--ts-black-rgb), 0.08),
+    0 1px 3px rgba(var(--ts-black-rgb), 0.06);
+  overflow: hidden;
+  pointer-events: auto;
+  animation: slideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  backdrop-filter: blur(12px);
+}
+
+.toast::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3.5px;
+}
+
+/* ── Type Backgrounds & Accents ── */
+
+.success {
+  border-color: rgba(var(--ts-success-bright-rgb), 0.2);
+  background: linear-gradient(135deg, rgba(var(--ts-success-bright-rgb), 0.04) 0%, var(--ts-white) 100%);
+}
+
+.success::before {
+  background: var(--ts-success);
+}
+
+.error {
+  border-color: rgba(var(--ts-error-bright-rgb), 0.2);
+  background: linear-gradient(135deg, rgba(var(--ts-error-bright-rgb), 0.04) 0%, var(--ts-white) 100%);
+}
+
+.error::before {
+  background: var(--ts-error-bright);
+}
+
+.warning {
+  border-color: rgba(var(--ts-warning-bright-rgb), 0.2);
+  background: linear-gradient(135deg, rgba(var(--ts-warning-bright-rgb), 0.04) 0%, var(--ts-white) 100%);
+}
+
+.warning::before {
+  background: var(--ts-warning);
+}
+
+.info {
+  border-color: rgba(var(--ts-primary-rgb), 0.2);
+  background: linear-gradient(135deg, rgba(var(--ts-primary-rgb), 0.04) 0%, var(--ts-white) 100%);
+}
+
+.info::before {
+  background: var(--ts-primary);
+}
+
+/* ── Icon Badge ── */
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ts-icon-lg);
+  height: var(--ts-icon-lg);
+  border-radius: var(--ts-radius-sm);
+  font-size: var(--ts-text-lg);
+  font-weight: var(--ts-font-bold);
+  line-height: var(--ts-leading-none);
+}
+
+.success .icon {
+  background: rgba(var(--ts-success-bright-rgb), 0.12);
+  color: var(--ts-success-dark);
+}
+
+.error .icon {
+  background: rgba(var(--ts-error-bright-rgb), 0.12);
+  color: var(--ts-error-dark);
+}
+
+.warning .icon {
+  background: rgba(var(--ts-warning-bright-rgb), 0.12);
+  color: var(--ts-warning-dark);
+}
+
+.info .icon {
+  background: rgba(var(--ts-primary-rgb), 0.12);
+  color: var(--ts-primary);
+}
+
+/* ── Body Text ── */
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding-top: var(--ts-space-1);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--ts-space-4);
+}
+
+.title {
+  font-size: var(--ts-text-base);
+  font-weight: 650;
+  color: var(--ts-black);
+  line-height: 1.3;
+  letter-spacing: -0.15px;
+}
+
+.typeLabel {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: var(--ts-radius-sm);
+  font-size: var(--ts-text-2xs);
+  font-weight: var(--ts-font-semibold);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  line-height: var(--ts-leading-loose);
+}
+
+.success .typeLabel {
+  background: rgba(var(--ts-success-bright-rgb), 0.1);
+  color: var(--ts-success-dark);
+}
+
+.error .typeLabel {
+  background: rgba(var(--ts-error-bright-rgb), 0.1);
+  color: var(--ts-error-dark);
+}
+
+.warning .typeLabel {
+  background: rgba(var(--ts-warning-bright-rgb), 0.1);
+  color: var(--ts-warning-dark);
+}
+
+.info .typeLabel {
+  background: rgba(var(--ts-primary-rgb), 0.1);
+  color: var(--ts-primary);
+}
+
+.message {
+  font-size: 12.5px;
+  font-weight: var(--ts-font-normal);
+  color: var(--ts-gray-600);
+  line-height: 1.5;
+  word-break: break-word;
+  margin-top: 1px;
+}
+
+/* ── Close Button ── */
+
+.close {
+  position: absolute;
+  top: var(--ts-space-6);
+  right: var(--ts-space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ts-icon-md);
+  height: var(--ts-icon-md);
+  border: none;
+  border-radius: var(--ts-radius-sm);
+  background: transparent;
+  color: var(--ts-gray-400);
+  font-size: var(--ts-text-xs);
+  cursor: pointer;
+  transition: all var(--ts-transition);
+  opacity: 0.6;
+}
+
+.close:hover {
+  background: var(--ts-gray-100);
+  color: var(--ts-black);
+  opacity: 1;
+}
+
+/* ── Progress Bar ── */
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 3.5px;
+  right: 0;
+  height: 2.5px;
+  transform-origin: left center;
+  animation: shrink linear forwards;
+}
+
+.success .progress {
+  background: linear-gradient(90deg, var(--ts-success), rgba(var(--ts-success-bright-rgb), 0.3));
+}
+
+.error .progress {
+  background: linear-gradient(90deg, var(--ts-error-bright), rgba(var(--ts-error-bright-rgb), 0.3));
+}
+
+.warning .progress {
+  background: linear-gradient(90deg, var(--ts-warning), rgba(var(--ts-warning-bright-rgb), 0.3));
+}
+
+.info .progress {
+  background: linear-gradient(90deg, var(--ts-primary), rgba(var(--ts-primary-rgb), 0.3));
+}
+
+.toast:hover .progress {
+  animation-play-state: paused;
+}
+
+/* ── Animations ── */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(var(--ts-space-12)) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes shrink {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 480px) {
+  .container {
+    top: calc(var(--ts-header-height) + var(--ts-space-4));
+    right: var(--ts-space-5);
+    left: var(--ts-space-5);
+    max-width: none;
+  }
+
+  .toast {
+    padding: var(--ts-space-7) var(--ts-space-8);
+    padding-right: var(--ts-space-20);
+  }
+}

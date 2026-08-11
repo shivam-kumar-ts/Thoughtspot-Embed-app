@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "@thoughtspot/rest-api-sdk": "^2.22.0",
+    "@thoughtspot/visual-embed-sdk": "^1.50.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -25,6 +27,9 @@
     "globals": "^17.7.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.65.0",
-    "vite": "^8.2.0"
+    "vite": "^8.2.0",
+    "@tailwindcss/postcss": "^4",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4"
   }
 }
