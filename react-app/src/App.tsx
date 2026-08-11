@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import "./styles/page.module.css";
 import classes from "./styles/page.module.css";
 import Intro from "./components/intro";
 import EnvConfig from "./components/envConfig";

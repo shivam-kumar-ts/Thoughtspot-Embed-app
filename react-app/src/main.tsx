@@ -24,7 +24,7 @@ function AppInit() {
         err.message || NOTIFICATION_MESSAGES.auth.message,
       );
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

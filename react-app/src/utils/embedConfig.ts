@@ -88,9 +88,6 @@ const embedConfig = {
         isThisPeriodInDateFiltersEnabled: true,
     },
 
-    spotterAgentConfig: {
-        get worksheetId() { return getEmbedEnv().worksheetId; },
-    },
 };
 
 export default embedConfig;
