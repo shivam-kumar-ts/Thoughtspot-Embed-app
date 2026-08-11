@@ -1,9 +1,10 @@
 "use client";
 import { NOTIFICATION_TYPE } from "../types";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { authenticate } from "@/app/utils/auth";
 import { NOTIFICATION_MESSAGES } from "../utils/constants";
 import NotificationContext from "@/app/contexts/NotificationContext";
+import LoadingComponent from "@/app/components/loading";
 
 export default function EmbedLayout({
   children,
@@ -11,6 +12,7 @@ export default function EmbedLayout({
   children: React.ReactNode;
 }) {
   const { notify } = useContext(NotificationContext);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     authenticate((err) => {
@@ -19,9 +21,11 @@ export default function EmbedLayout({
         NOTIFICATION_MESSAGES.auth.failed,
         err.message || NOTIFICATION_MESSAGES.auth.message,
       );
-    });
+    })
+      .then(() => setIsInitialized(true))
+      .catch(() => setIsInitialized(true));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <>{children}</>;
+  return isInitialized ? <>{children}</> : <LoadingComponent />;
 }

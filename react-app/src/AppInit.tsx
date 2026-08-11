@@ -4,12 +4,14 @@ import Footer from "./components/footer/index";
 import Header from "./components/header/index";
 import NotificationStack from "./components/notification/index";
 import NotificationContext from "./contexts/NotificationContext";
+import AppContext from "./contexts/AppContext";
 import { authenticate } from "./utils/auth";
 import { NOTIFICATION_TYPE } from "./types/index";
 import { NOTIFICATION_MESSAGES } from "./utils/constants";
 
 export default function AppInit() {
   const { notify } = useContext(NotificationContext);
+  const { setIsInitialized } = useContext(AppContext);
 
   useEffect(() => {
     authenticate((err) => {
@@ -18,7 +20,9 @@ export default function AppInit() {
         NOTIFICATION_MESSAGES.auth.failed,
         err.message || NOTIFICATION_MESSAGES.auth.message,
       );
-    });
+    })
+      .then(() => setIsInitialized(true))
+      .catch(() => setIsInitialized(true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
