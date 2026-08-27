@@ -1,12 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import classes from "./index.module.css";
-import { PAGE_TEXT } from "../../utils/constants";
+import { EMBED_AUTH_TYPES, PAGE_TEXT } from "../../utils/constants";
 import { NOTIFICATION_TYPE } from "../../types";
 import { getEmbedEnv, saveEmbedEnv, clearEmbedEnv } from "../../utils/embedEnv";
+import type { EmbedAuthType } from "../../utils/embedEnv";
 import NotificationContext from "../../contexts/NotificationContext";
 import AppContext from "../../contexts/AppContext";
 
 const TEXT = PAGE_TEXT.ENV_FORM;
+
+const AUTH_TYPE_OPTIONS = Object.entries(TEXT.FIELDS.AUTH_TYPE.options) as [
+  EmbedAuthType,
+  { label: string; hint: string },
+][];
 
 type ModalProps = {
   onClose: () => void;
@@ -19,6 +25,9 @@ const EnvConfigModal = ({ onClose }: ModalProps) => {
   const [username, setUsername] = useState(() => getEmbedEnv().username);
   const [host, setHost] = useState(() => getEmbedEnv().host);
   const [password, setPassword] = useState(() => getEmbedEnv().password);
+  const [authType, setAuthType] = useState<EmbedAuthType>(
+    () => getEmbedEnv().authType,
+  );
   const [liveboardId, setLiveboardId] = useState(
     () => getEmbedEnv().liveboardId,
   );
@@ -44,6 +53,7 @@ const EnvConfigModal = ({ onClose }: ModalProps) => {
       username,
       host,
       password,
+      authType,
       liveboardId,
       vizId,
       worksheetId,
@@ -60,6 +70,7 @@ const EnvConfigModal = ({ onClose }: ModalProps) => {
     setUsername(defaults.username);
     setHost(defaults.host);
     setPassword(defaults.password);
+    setAuthType(defaults.authType);
     setLiveboardId(defaults.liveboardId);
     setVizId(defaults.vizId);
     setWorksheetId(defaults.worksheetId);
@@ -118,16 +129,38 @@ const EnvConfigModal = ({ onClose }: ModalProps) => {
           </label>
 
           <label className={classes.field}>
-            <span className={classes.label}>{TEXT.FIELDS.PASSWORD.label}</span>
-            <input
-              type="password"
-              className={classes.input}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder={TEXT.FIELDS.PASSWORD.placeholder}
-              autoComplete="current-password"
-            />
+            <span className={classes.label}>{TEXT.FIELDS.AUTH_TYPE.label}</span>
+            <select
+              className={classes.select}
+              value={authType}
+              onChange={(e) => setAuthType(e.target.value as EmbedAuthType)}
+            >
+              {AUTH_TYPE_OPTIONS.map(([value, option]) => (
+                <option key={value} value={value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <span className={classes.hint}>
+              {TEXT.FIELDS.AUTH_TYPE.options[authType].hint}
+            </span>
           </label>
+
+          {authType === EMBED_AUTH_TYPES.TRUSTED_TOKEN_COOKIELESS && (
+            <label className={classes.field}>
+              <span className={classes.label}>
+                {TEXT.FIELDS.PASSWORD.label}
+              </span>
+              <input
+                type="password"
+                className={classes.input}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder={TEXT.FIELDS.PASSWORD.placeholder}
+                autoComplete="current-password"
+              />
+            </label>
+          )}
 
           <label className={classes.field}>
             <span className={classes.label}>

@@ -192,7 +192,7 @@ Key design decisions:
 | UI | [Tailwind CSS 4](https://tailwindcss.com/) |
 | Language | [TypeScript 6](https://www.typescriptlang.org/) |
 | Analytics | [@thoughtspot/visual-embed-sdk](https://www.npmjs.com/package/@thoughtspot/visual-embed-sdk) |
-| Auth | ThoughtSpot Trusted Auth — credentials configured via in-browser form and stored in `localStorage` |
+| Auth | ThoughtSpot Trusted Auth (Cookieless) or Embedded SSO — selected via in-browser form and stored in `localStorage` |
 
 ### Getting Started
 
@@ -209,6 +209,7 @@ VITE_TS_HOST='https://your-instance.thoughtspot.cloud'
 VITE_TS_LIVEBOARD_ID='your-liveboard-guid'
 VITE_TS_VIZ_ID='your-visualization-guid'
 VITE_TS_WORKSHEET_ID='your-worksheet-guid'
+VITE_TS_AUTH_TYPE='TrustedAuthTokenCookieless'   # or 'EmbeddedSSO'
 ```
 
 > **Note:** The React app does **not** support a server-side password variable. The ThoughtSpot password is entered through the UI form and persisted in `localStorage` — do not use this app in production with sensitive credentials.
@@ -220,6 +221,7 @@ VITE_TS_WORKSHEET_ID='your-worksheet-guid'
 | `VITE_TS_LIVEBOARD_ID` | GUID of the Liveboard to embed |
 | `VITE_TS_VIZ_ID` | GUID of the specific visualization to embed |
 | `VITE_TS_WORKSHEET_ID` | GUID of the worksheet used by Search and Spotter |
+| `VITE_TS_AUTH_TYPE` | Default auth type — `TrustedAuthTokenCookieless` (default) or `EmbeddedSSO` |
 
 ```bash
 npm run dev      # http://localhost:5173
@@ -278,19 +280,29 @@ Run from `react-app/`:
 
 ### Authentication
 
-The React app uses **client-side ThoughtSpot Trusted Authentication**. The auth flow is:
+The React app supports two auth types, selectable from the **Authentication Type** dropdown in the **Connection Settings** form. The choice is stored in `localStorage` alongside the other settings and takes effect on the next page load.
+
+**Trusted Auth Token (cookieless)** — the default:
 
 1. On app mount, `AppInit.tsx` calls `authenticate()` with credentials read from `localStorage` (falling back to `VITE_TS_*` env defaults)
 2. `authenticate()` calls the ThoughtSpot REST API directly from the browser to fetch a token
-3. The SDK is initialized with the returned token
-4. Users can update credentials at any time from the **Connection Settings** form on the home page — changes are saved to `localStorage` and take effect on the next page load
+3. The SDK is initialized with `AuthType.TrustedAuthTokenCookieless` and the returned token
+
+**Embedded SSO** — passthrough SSO inside the iframe:
+
+1. The SDK is initialized with `AuthType.EmbeddedSSO` — no username, password, or token request from the host app
+2. ThoughtSpot redirects to your SAML/OIDC IdP inside the embed iframe and reuses the session already established there
+3. Requirements: SSO must be configured on the ThoughtSpot instance, and your IdP must allow iframe redirects (e.g. iframe embedding enabled in Okta). If SSO is not configured, this behaves like `AuthType.None`
+4. The password field is hidden in the settings form while this auth type is selected, since it is unused
+
+> **Do not set `autoLogin: true` with Embedded SSO.** The SDK translates `autoLogin` into `disableLoginRedirect=true` on the iframe URL, which suppresses the IdP redirect that Embedded SSO relies on — the embed then renders a *not logged in* message instead of authenticating. `getAuthStrategy()` in `src/utils/auth.ts` applies `autoLogin` only to the trusted-token flow for this reason.
 
 ---
 
 ## Security
 
 - **Next.js app** — `TS_PASSWORD` is a server-only variable; it is never bundled into client code. API routes validate request origin via `middleware.ts`.
-- **React app** — All credentials (including password) are stored in `localStorage` and sent from the browser. Intended for local development and demos only.
+- **React app** — With Trusted Auth, all credentials (including password) are stored in `localStorage` and sent from the browser; intended for local development and demos only. With Embedded SSO, no credentials are handled by the host app — the IdP session inside the iframe is used instead.
 
 ## Resources
 

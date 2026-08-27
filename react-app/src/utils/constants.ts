@@ -5,6 +5,13 @@ const LIVEBOARD_ID = import.meta.env.VITE_TS_LIVEBOARD_ID || '';
 const VIZ_ID = import.meta.env.VITE_TS_VIZ_ID || '';
 const WORKSHEET_ID = import.meta.env.VITE_TS_WORKSHEET_ID || '';
 
+const EMBED_AUTH_TYPES = {
+    TRUSTED_TOKEN_COOKIELESS: 'TrustedAuthTokenCookieless',
+    EMBEDDED_SSO: 'EmbeddedSSO',
+} as const;
+
+const AUTH_TYPE = import.meta.env.VITE_TS_AUTH_TYPE || EMBED_AUTH_TYPES.TRUSTED_TOKEN_COOKIELESS;
+
 const LINKS = {
     DOCS: {
         url: "https://developers.thoughtspot.com/docs/",
@@ -112,6 +119,21 @@ const PAGE_TEXT = {
                 label: "Host",
                 placeholder: "e.g. https://my-instance.thoughtspot.cloud",
             },
+            AUTH_TYPE: {
+                label: "Authentication Type",
+                description:
+                    "How the host app authenticates the embed with ThoughtSpot.",
+                options: {
+                    [EMBED_AUTH_TYPES.TRUSTED_TOKEN_COOKIELESS]: {
+                        label: "Trusted Auth Token (cookieless)",
+                        hint: "Fetches a login token from ThoughtSpot using the username and password below.",
+                    },
+                    [EMBED_AUTH_TYPES.EMBEDDED_SSO]: {
+                        label: "Embedded SSO",
+                        hint: "Passes your existing IdP session through to the embed inside the iframe. No username or password needed, but your IdP must allow iframe redirects and SSO must be configured on ThoughtSpot.",
+                    },
+                },
+            },
             PASSWORD: {
                 label: "Password",
                 placeholder: "Your ThoughtSpot password",
@@ -214,6 +236,8 @@ export {
     LIVEBOARD_ID,
     WORKSHEET_ID,
     VIZ_ID,
+    AUTH_TYPE,
+    EMBED_AUTH_TYPES,
     LINKS,
     NAV_ITEMS,
     BRAND,

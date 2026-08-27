@@ -1,9 +1,12 @@
-import { USERNAME, HOST, LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID } from './constants';
+import { USERNAME, HOST, LIVEBOARD_ID, VIZ_ID, WORKSHEET_ID, AUTH_TYPE, EMBED_AUTH_TYPES } from './constants';
+
+export type EmbedAuthType = (typeof EMBED_AUTH_TYPES)[keyof typeof EMBED_AUTH_TYPES];
 
 export type EmbedEnv = {
     username: string;
     host: string;
     password: string;
+    authType: EmbedAuthType;
     liveboardId: string;
     vizId: string;
     worksheetId: string;
@@ -12,10 +15,14 @@ export type EmbedEnv = {
 
 const STORAGE_KEY = 'ts-embed-env';
 
+const isAuthType = (value: unknown): value is EmbedAuthType =>
+    Object.values(EMBED_AUTH_TYPES).includes(value as EmbedAuthType);
+
 const getDefaults = (): EmbedEnv => ({
     username: USERNAME,
     host: HOST,
     password: '',
+    authType: isAuthType(AUTH_TYPE) ? AUTH_TYPE : EMBED_AUTH_TYPES.TRUSTED_TOKEN_COOKIELESS,
     liveboardId: LIVEBOARD_ID,
     vizId: VIZ_ID,
     worksheetId: WORKSHEET_ID,
@@ -44,6 +51,7 @@ export const getEmbedEnv = (): EmbedEnv => {
             username: parsed.username?.trim() || defaults.username,
             host: parsed.host?.trim() || defaults.host,
             password: parsed.password ?? defaults.password,
+            authType: isAuthType(parsed.authType) ? parsed.authType : defaults.authType,
             liveboardId: parsed.liveboardId?.trim() || defaults.liveboardId,
             vizId: parsed.vizId?.trim() || defaults.vizId,
             worksheetId: parsed.worksheetId?.trim() || defaults.worksheetId,
@@ -67,6 +75,7 @@ export const saveEmbedEnv = (env: EmbedEnv): void => {
             username: env.username.trim(),
             host: env.host.trim(),
             password: env.password,
+            authType: env.authType,
             liveboardId: env.liveboardId.trim(),
             vizId: env.vizId.trim(),
             worksheetId: env.worksheetId.trim(),

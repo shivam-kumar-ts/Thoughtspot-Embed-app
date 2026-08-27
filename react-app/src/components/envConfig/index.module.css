@@ -189,6 +189,28 @@
   border-color: var(--ts-primary);
   box-shadow: 0 0 0 3px rgba(var(--ts-primary-rgb), 0.12);
 }
+.select {
+  width: 100%;
+  padding: var(--ts-space-6) var(--ts-space-8);
+  background: var(--ts-white);
+  border: 1px solid var(--ts-gray-200);
+  border-radius: var(--ts-radius-sm);
+  font-size: var(--ts-text-base);
+  color: var(--ts-black);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--ts-transition);
+}
+.select:focus {
+  outline: none;
+  border-color: var(--ts-primary);
+  box-shadow: 0 0 0 3px rgba(var(--ts-primary-rgb), 0.12);
+}
+.hint {
+  font-size: var(--ts-text-sm);
+  line-height: var(--ts-leading-snug);
+  color: var(--ts-gray-600);
+}
 
 .toggleRow {
   display: flex;

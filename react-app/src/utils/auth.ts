@@ -1,8 +1,12 @@
-import { API, ERROR_MESSAGES } from './constants';
+import { API, EMBED_AUTH_TYPES, ERROR_MESSAGES } from './constants';
 import { getEmbedEnv } from './embedEnv';
 import { init, AuthType, LogLevel } from '@thoughtspot/visual-embed-sdk';
+import type { EmbedConfig } from '@thoughtspot/visual-embed-sdk';
 
 export type AuthErrorCallback = (error: Error) => void;
+
+type AuthStrategy = Pick<EmbedConfig, 'authType'> &
+    Partial<Pick<EmbedConfig, 'getAuthToken' | 'username' | 'disableTokenVerification' | 'autoLogin'>>;
 
 const fetchAuthToken = async (): Promise<string> => {
     const { username, host, password } = getEmbedEnv();
@@ -34,12 +38,32 @@ const fetchAuthToken = async (): Promise<string> => {
     return data.token;
 };
 
-const getAuthStrategy = () => {
-    const { username } = getEmbedEnv();
+/**
+ * Builds the auth slice of the init config for the auth type selected in the
+ * connection settings. Embedded SSO needs no credentials from the host app:
+ * ThoughtSpot redirects to the IdP inside the iframe and reuses the session
+ * already established there.
+ *
+ * `autoLogin` is deliberately limited to the token flow. The SDK maps
+ * `autoLogin: true` to `disableLoginRedirect=true` on the iframe URL, which
+ * suppresses the very IdP redirect Embedded SSO depends on and leaves the
+ * embed showing "not logged in".
+ */
+const getAuthStrategy = (): AuthStrategy => {
+    const { username, authType } = getEmbedEnv();
+
+    if (authType === EMBED_AUTH_TYPES.EMBEDDED_SSO) {
+        return {
+            authType: AuthType.EmbeddedSSO,
+        };
+    }
+
     return {
         authType: AuthType.TrustedAuthTokenCookieless,
         getAuthToken: fetchAuthToken,
         username,
+        disableTokenVerification: true,
+        autoLogin: true,
     };
 };
 
@@ -49,8 +73,6 @@ export const authenticate = async (onError?: AuthErrorCallback): Promise<void> =
         await init({
             thoughtSpotHost: host,
             ...getAuthStrategy(),
-            autoLogin: true,
-            disableTokenVerification: true,
             logLevel: LogLevel.DEBUG,
         });
     } catch (error) {
