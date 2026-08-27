@@ -1,16 +1,8 @@
 import { useContext } from "react";
-import {
-  PreRenderedAppEmbed,
-  PreRenderedLiveboardEmbed,
-} from "@thoughtspot/visual-embed-sdk/react";
+import { PreRenderedLiveboardEmbed } from "@thoughtspot/visual-embed-sdk/react";
 import AppContext from "../../contexts/AppContext";
 import embedConfig from "../../utils/embedConfig";
-import {
-  FULL_APP_PRE_RENDER_ID,
-  LIVEBOARD_PRE_RENDER_ID,
-  FULL_APP_PRE_RENDER_CONTAINER_ID,
-  LIVEBOARD_PRE_RENDER_CONTAINER_ID,
-} from "../../utils/constants";
+import { LIVEBOARD_PRE_RENDER_ID } from "../../utils/constants";
 
 export default function PreRenderInit() {
   const { isInitialized } = useContext(AppContext);
@@ -19,15 +11,8 @@ export default function PreRenderInit() {
 
   return (
     <>
-      <PreRenderedAppEmbed
-        preRenderId={FULL_APP_PRE_RENDER_ID}
-        preRenderContainer={`#${FULL_APP_PRE_RENDER_CONTAINER_ID}`}
-        {...embedConfig.globalConfig}
-        {...embedConfig.fullAppConfig}
-      />
       <PreRenderedLiveboardEmbed
         preRenderId={LIVEBOARD_PRE_RENDER_ID}
-        preRenderContainer={`#${LIVEBOARD_PRE_RENDER_CONTAINER_ID}`}
         {...embedConfig.globalConfig}
         {...embedConfig.liveboardConfig}
       />
