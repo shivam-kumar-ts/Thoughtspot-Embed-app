@@ -11,16 +11,14 @@ export type AuthErrorCallback = (error: Error) => void;
 // component (initializeThoughtSpot / getToken / isTokenExpired) are mirrored
 // here as closely as possible, bugs included.
 //
-// Repro knobs:
-//  - REPRO_VALIDITY_TIME_IN_SEC: short token life so expiry happens quickly.
-//  - REPRO_CLOCK_SKEW_MS: simulates the user's browser clock being BEHIND
-//    the ThoughtSpot server. isTokenExpired() then thinks the token is still
-//    valid after TS has expired it, so getAuthToken hands the SDK the same
-//    (already rejected) token again -> "Duplicate token" / auth failure.
-//    Set to 0 to see the exact-expiry race instead.
+// FIXED: getAuthToken no longer returns a previously issued token. The SDK
+// caches/validates the token and only calls getAuthToken when it needs a NEW
+// one, so the client-side expiry check (isTokenExpired) was removed, and
+// getToken now rethrows instead of swallowing errors.
+//
+// REPRO_VALIDITY_TIME_IN_SEC: short token life so expiry happens quickly.
 // ---------------------------------------------------------------------------
 const REPRO_VALIDITY_TIME_IN_SEC = 60;
-const REPRO_CLOCK_SKEW_MS = -5 * 60 * 1000;
 
 type TSAccessToken = {
     token: string;
@@ -65,8 +63,8 @@ const getTSTokenFromBackend = async (): Promise<TSAccessToken> => {
 // ---------------------------------------------------------------------------
 // UI: mirrors the customer's Angular component.
 // ---------------------------------------------------------------------------
-let tsAccesToken: string;
-let tsTokenExpiry: number;
+// Token fetched before init(); handed to the SDK only once.
+let tsAccesToken: string | null = null;
 let showTS = false;
 let showIframe = true;
 let onAuthError: AuthErrorCallback | undefined;
@@ -77,8 +75,8 @@ const handleError = (error: unknown): void => {
     onAuthError?.(err);
 };
 
-// Same as customer: errors are swallowed, so callers keep the old token.
-const getToken = async (): Promise<void> => {
+// Returns a NEW token on every call and rethrows on failure.
+const getToken = async (): Promise<string> => {
     try {
         const response = await getTSTokenFromBackend();
 
@@ -87,27 +85,22 @@ const getToken = async (): Promise<void> => {
             throw new Error('Token is undefined');
         }
         showTS = true;
-        tsAccesToken = response.token;
-        tsTokenExpiry = response.expiration_time_in_millis;
-        console.log('[ui] token received, expires at', new Date(tsTokenExpiry).toISOString());
+        console.log('[ui] token received, expires at',
+            new Date(response.expiration_time_in_millis).toISOString());
+        return response.token;
     } catch (error) {
         showTS = false;
         showIframe = false;
-        handleError(error);
+        // Rethrow so the caller (authenticate / SDK) sees the failure
+        // instead of silently getting a stale or undefined token
+        throw error;
     }
-};
-
-// Same as customer: server expiry vs browser clock, no margin.
-// REPRO_CLOCK_SKEW_MS shifts the "browser clock" to simulate skew.
-const isTokenExpired = (): boolean => {
-    const now = Date.now() + REPRO_CLOCK_SKEW_MS;
-    return tsTokenExpiry <= now;
 };
 
 export const authenticate = async (onError?: AuthErrorCallback): Promise<void> => {
     onAuthError = onError;
     try {
-        await getToken();
+        tsAccesToken = await getToken();
         const { host } = getEmbedEnv();
         init({
             thoughtSpotHost: host,
@@ -117,15 +110,18 @@ export const authenticate = async (onError?: AuthErrorCallback): Promise<void> =
             // NOTE: no disableTokenVerification, same as the customer. That
             // flag changes how the SDK caches/validates the token and would
             // hide the bug.
+            // SDK caches/validates the token and calls this only when it
+            // needs a NEW one, so never return a previously issued token.
             getAuthToken: async () => {
                 console.log('[ui] SDK called getAuthToken');
-                if (isTokenExpired()) {
-                    console.log('token Refreshed');
-                    await getToken();
-                } else {
-                    console.warn('[ui] returning the SAME token again (client thinks it is not expired)');
+                if (tsAccesToken) {
+                    // Hand the token fetched before init() to the SDK only once
+                    const token = tsAccesToken;
+                    tsAccesToken = null;
+                    return token;
                 }
-                return tsAccesToken;
+                console.log('token Refreshed');
+                return getToken();
             },
             logLevel: LogLevel.DEBUG,
         });

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@thoughtspot/rest-api-sdk": "^2.22.0",
-    "@thoughtspot/visual-embed-sdk": "^1.50.1",
+    "@thoughtspot/visual-embed-sdk": "^1.28.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2"

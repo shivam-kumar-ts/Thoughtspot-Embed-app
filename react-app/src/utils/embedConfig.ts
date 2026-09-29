@@ -1,5 +1,5 @@
 import { getEmbedEnv } from "./embedEnv";
-import { HomePage, ListPage, Page, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
+// import { HomePage, ListPage, Page, PrimaryNavbarVersion } from "@thoughtspot/visual-embed-sdk";
 
 const customCSSVariables = {
     variables: {
@@ -24,11 +24,11 @@ const embedConfig = {
                 },
             },
         },
-        fullHeight: true,
-        get overrideHistoryState() {
-            return getEmbedEnv().overrideHistoryState;
-        },
-        enableLinkOverridesV2: true,
+        // fullHeight: true,
+        // get overrideHistoryState() {
+        //     return getEmbedEnv().overrideHistoryState;
+        // },
+        // enableLinkOverridesV2: true,
         onALL: (err: unknown) => {
             console.log(err);
         }
@@ -63,11 +63,11 @@ const embedConfig = {
     fullAppConfig: {
         showPrimaryNavbar: true,
         modularHomeExperience: true,
-        discoveryExperience: {
-            primaryNavbarVersion: PrimaryNavbarVersion.Sliding,
-            homePage: HomePage.ModularWithStylingChanges,
-            listPageVersion: ListPage.ListWithUXChanges,
-        },
+        // discoveryExperience: {
+        //     primaryNavbarVersion: PrimaryNavbarVersion.Sliding,
+        //     homePage: HomePage.ModularWithStylingChanges,
+        //     listPageVersion: ListPage.ListWithUXChanges,
+        // },
         isUnifiedSearchExperienceEnabled: true,
         isLiveboardCompactHeaderEnabled: true,
         isLiveboardMasterpiecesEnabled: true,
@@ -80,7 +80,7 @@ const embedConfig = {
         },
         hideIrrelevantChipsInLiveboardTabs: true,
         coverAndFilterOptionInPDF: true,
-        pageId: Page.Home,
+        // pageId: Page.Home,
     },
 
     searchConfig: {
