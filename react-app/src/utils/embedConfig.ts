@@ -31,7 +31,10 @@ const embedConfig = {
         enableLinkOverridesV2: true,
         onALL: (err: unknown) => {
             console.log(err);
-        }
+        },
+        additionalFlags:{
+            excludeConfigFromURL: true,
+        },
     },
 
     liveboardConfig: {
@@ -65,7 +68,7 @@ const embedConfig = {
         modularHomeExperience: true,
         discoveryExperience: {
             primaryNavbarVersion: PrimaryNavbarVersion.Sliding,
-            homePage: HomePage.ModularWithStylingChanges,
+            homePage: HomePage.Focused,
             listPageVersion: ListPage.ListWithUXChanges,
         },
         isUnifiedSearchExperienceEnabled: true,
